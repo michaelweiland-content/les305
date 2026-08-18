@@ -1,1 +1,1076 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>LES 305 1.4 Ethical Theories and Tests</title>
+  <style>
+    :root {
+      --maroon: #8c1d40;
+      --gold: #ffc627;
+      --ink: #191919;
+      --muted: #484848;
+      --line: #bfbfbf;
+      --soft: #fafafa;
+      --white: #ffffff;
+      --blue: #006a96;
+      --green: #3b7016;
+      --red: #a6192e;
+      --focus: #005ea8;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+    #les305-app, #les305-app * { box-sizing: border-box; }
+    body { margin: 0; color: var(--ink); background: var(--soft); line-height: 1.5; }
+    #les305-app { min-height: 100vh; }
+    #les305-app .skip-link { position: absolute; top: -6rem; left: 1rem; z-index: 20; padding: .65rem .9rem; color: var(--ink); background: var(--gold); border: 2px solid var(--ink); }
+    #les305-app .skip-link:focus { top: 1rem; }
+    #les305-app .site-header { color: var(--white); background: var(--maroon); border-bottom: 8px solid var(--gold); }
+    #les305-app .wrap { width: min(1160px, calc(100% - 32px)); margin: 0 auto; }
+    #les305-app .header-inner { padding: 1.35rem 0 1.5rem; }
+    #les305-app h1 { margin: 0; font-size: clamp(1.85rem, 4vw, 2.6rem); line-height: 1.1; letter-spacing: 0; }
+    #les305-app .activity-title { margin: .45rem 0 0; font-size: clamp(1.2rem, 2.5vw, 1.45rem); font-weight: 400; line-height: 1.25; }
+    #les305-app .site-header p:last-child { margin: .7rem 0 0; max-width: 960px; font-size: 1.05rem; }
+    #les305-app main { padding: 1.25rem 0 2.25rem; }
+    #les305-app h2 { margin: 0 0 .65rem; font-size: clamp(1.3rem, 3vw, 1.75rem); line-height: 1.2; letter-spacing: 0; }
+    #les305-app h3 { margin: 0 0 .45rem; font-size: 1.15rem; letter-spacing: 0; }
+    #les305-app h4 { margin: .8rem 0 .3rem; font-size: 1rem; letter-spacing: 0; }
+    #les305-app p { margin-top: 0; }
+    #les305-app .panel { padding: 1rem; background: var(--white); border: 1px solid var(--line); border-radius: 8px; box-shadow: 0 2px 8px rgba(25,25,25,.06); }
+    #les305-app .intro-grid { display: grid; grid-template-columns: 1.25fr .75fr; gap: 1rem; margin-bottom: 1rem; }
+    #les305-app .metric-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: .65rem; }
+    #les305-app .metric { min-height: 82px; padding: .7rem; background: #fff8df; border-left: 5px solid var(--maroon); }
+    #les305-app .metric strong { display: block; font-size: 1.45rem; line-height: 1; }
+    #les305-app .tabs { display: flex; flex-wrap: wrap; gap: .5rem; margin: 0 0 1rem; border-bottom: 3px solid var(--maroon); }
+    #les305-app button { min-height: 44px; padding: .62rem .9rem; border: 2px solid transparent; border-radius: 6px; font: inherit; font-weight: 700; cursor: pointer; }
+    #les305-app .tab { margin-bottom: -3px; color: var(--maroon); background: var(--white); border-color: var(--maroon); border-bottom: 0; border-radius: 6px 6px 0 0; }
+    #les305-app .tab[aria-selected="true"] { color: var(--white); background: var(--maroon); }
+    #les305-app .tab.locked { opacity: .55; cursor: not-allowed; }
+    #les305-app .tab-panel[hidden], #les305-app .reading-panel[hidden], #les305-app .accordion-panel[hidden] { display: none; }
+    #les305-app .primary { color: var(--white); background: var(--maroon); }
+    #les305-app .secondary { color: var(--maroon); background: var(--white); border-color: var(--maroon); }
+    #les305-app .neutral { color: var(--ink); background: #e8e8e8; border-color: #747474; }
+    #les305-app button:disabled { opacity: .55; cursor: not-allowed; }
+    #les305-app button:focus-visible, #les305-app input:focus-visible, #les305-app textarea:focus-visible, #les305-app a:focus-visible { outline: 4px solid var(--focus); outline-offset: 3px; }
+    #les305-app .reading-nav { display: inline-flex; flex-wrap: wrap; gap: .3rem; padding: .3rem; margin: .35rem 0 1rem; background: #e8e8e8; border-radius: 8px; }
+    #les305-app .reading-button { color: var(--ink); background: transparent; }
+    #les305-app .reading-button[aria-selected="true"] { color: var(--white); background: var(--maroon); }
+    #les305-app .notice { margin-bottom: 1rem; padding: .8rem .9rem; background: #fff8df; border-left: 5px solid #b48700; }
+    #les305-app .accordion-list { display: grid; gap: .65rem; }
+    #les305-app .accordion-item { overflow: clip; background: var(--white); border: 1px solid var(--line); border-radius: 8px; }
+    #les305-app .accordion-item > h3 { margin: 0; font-size: 1.08rem; }
+    #les305-app .accordion-trigger { display: flex; width: 100%; min-height: 54px; align-items: center; justify-content: space-between; gap: .75rem; padding: .78rem .9rem; color: var(--ink); text-align: left; background: var(--soft); border-left: 6px solid var(--maroon); border-radius: 0; }
+    #les305-app .accordion-trigger[aria-expanded="true"] { background: #fff8df; border-left-color: #b48700; }
+    #les305-app .accordion-icon { color: var(--maroon); font-size: 1.35rem; }
+    #les305-app .accordion-panel { padding: 1rem; border-top: 1px solid var(--line); }
+    #les305-app .reading-detail { display: grid; grid-template-columns: 1.15fr .85fr; gap: 1rem; }
+    #les305-app .question-callout { padding: .8rem; background: #eef8fc; border-left: 5px solid var(--blue); }
+    #les305-app .question-callout strong { display: block; margin-bottom: .25rem; }
+    #les305-app .trolley-figure { margin: 0 0 1rem; background: #f3f3f3; border: 1px solid var(--line); border-radius: 8px; overflow: hidden; }
+    #les305-app .trolley-figure img { display: block; width: 100%; height: auto; aspect-ratio: 1672 / 941; object-fit: cover; }
+    #les305-app .trolley-figure figcaption { padding: .75rem .9rem; color: var(--muted); background: var(--white); }
+    #les305-app .motion-lab { margin: 1rem 0; padding: 1rem; background: var(--soft); border: 1px solid var(--line); border-radius: 8px; }
+    #les305-app .motion-stage { overflow: hidden; background: #eef3ed; border: 2px solid #747474; border-radius: 6px; }
+    #les305-app .motion-svg { display: block; width: 100%; height: auto; }
+    #les305-app .rail { fill: none; stroke: #484848; stroke-width: 7; stroke-linecap: round; }
+    #les305-app .ties { fill: none; stroke: #747474; stroke-width: 18; stroke-dasharray: 3 13; }
+    #les305-app .junction-marker { fill: var(--gold); stroke: var(--ink); stroke-width: 4; }
+    #les305-app .svg-label { fill: var(--ink); font-family: Arial, Helvetica, sans-serif; font-size: 24px; font-weight: 700; }
+    #les305-app .svg-trolley-body { fill: var(--maroon); stroke: var(--ink); stroke-width: 4; }
+    #les305-app .svg-trolley-window { fill: #ffffff; stroke: var(--ink); stroke-width: 2; }
+    #les305-app .svg-trolley-wheel { fill: var(--ink); }
+    #les305-app .svg-trolley-text { fill: #ffffff; font-family: Arial, Helvetica, sans-serif; font-size: 13px; font-weight: 700; }
+    #les305-app .actions { display: flex; flex-wrap: wrap; gap: .65rem; align-items: center; margin: 1rem 0; }
+    #les305-app .motion-status, #les305-app .status { min-height: 1.5rem; font-weight: 700; }
+    #les305-app .question-card { padding: .9rem; background: var(--soft); border: 1px solid var(--line); border-radius: 6px; }
+    #les305-app .question-card + .question-card { margin-top: 1rem; }
+    #les305-app .question-number { margin-bottom: .35rem; color: var(--muted); font-size: .9rem; font-weight: 700; }
+    #les305-app fieldset { margin: 0; padding: 0; border: 0; }
+    #les305-app legend { margin-bottom: .6rem; font-weight: 700; }
+    #les305-app .choices { display: grid; gap: .55rem; }
+    #les305-app .choice { display: flex; min-height: 54px; gap: .55rem; align-items: flex-start; padding: .7rem; background: var(--white); border: 1px solid var(--line); border-radius: 6px; }
+    #les305-app .choice input { flex: 0 0 auto; inline-size: 1.1rem; block-size: 1.1rem; margin-top: .22rem; }
+    #les305-app .feedback { min-height: 70px; padding: .8rem; background: #eef8fc; border: 1px solid var(--line); border-left: 6px solid var(--blue); border-radius: 6px; }
+    #les305-app .feedback.correct { background: #f2f8ed; border-left-color: var(--green); }
+    #les305-app .feedback.incorrect { background: #fff4f5; border-left-color: var(--red); }
+    #les305-app .form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    #les305-app .field { min-width: 0; }
+    #les305-app label { font-weight: 700; }
+    #les305-app .field-help { margin: .25rem 0 .4rem; color: var(--muted); font-size: .92rem; }
+    #les305-app textarea { width: 100%; min-height: 110px; padding: .7rem; resize: vertical; color: var(--ink); background: var(--white); border: 1px solid #747474; border-radius: 6px; font: inherit; }
+    #les305-app .credo-draft { min-height: 210px; }
+    #les305-app .completion-box { margin-top: 1rem; padding: .85rem; background: #eef8fc; border-left: 5px solid var(--blue); }
+    #les305-app .review-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; margin: 1rem 0; }
+    #les305-app .review-block { padding: .9rem; background: var(--soft); border: 1px solid var(--line); border-radius: 6px; }
+    #les305-app .review-block h3 { margin-bottom: .6rem; }
+    #les305-app .review-list { display: grid; gap: .45rem; margin-top: .75rem; }
+    #les305-app .review-item { padding: .65rem; background: var(--white); border-left: 5px solid var(--maroon); }
+    #les305-app .score-line { font-size: 1.25rem; font-weight: 700; }
+    #les305-app .privacy-note { font-weight: 700; }
+    @media (max-width: 850px) {
+      #les305-app .intro-grid, #les305-app .reading-detail, #les305-app .form-grid, #les305-app .review-grid { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 620px) {
+      #les305-app .wrap { width: min(100% - 20px, 1160px); }
+      #les305-app .metric-grid { grid-template-columns: 1fr; }
+      #les305-app .panel { padding: .85rem; }
+      #les305-app .tab { flex: 1 1 145px; }
+      #les305-app .reading-nav { display: grid; width: 100%; }
+      #les305-app .reading-button { width: 100%; }
+    }
+  </style>
+</head>
+<body>
+  <div id="les305-app">
+    <a class="skip-link" href="#main">Skip to activity</a>
+    <header class="site-header">
+      <div class="wrap header-inner">
+        <h1>LES 305 | 1.4 Ethical Theories and Tests</h1>
+        <p class="activity-title">Test the Decision. Set Your Boundaries.</p>
+        <p>Apply ethical theories to the trolley problem, then write a personal credo before pressure makes the decision for you.</p>
+      </div>
+    </header>
 
+    <main id="main" class="wrap">
+      <section class="intro-grid" aria-labelledby="instructions-heading">
+        <div class="panel">
+          <h2 id="instructions-heading">Instructions</h2>
+          <p>Review the theories, complete and check all 10 Trolley Analysis decisions, save your trolley conclusion, and save your Personal Credo. Review &amp; Submit unlocks only after all three requirements are complete.</p>
+          <p>Your Canvas score is based only on the 10 objective checks. Your trolley conclusion and credo are required but not scored, and their text is not sent to Canvas.</p>
+        </div>
+        <div class="panel" aria-label="Progress summary">
+          <div class="metric-grid">
+            <div class="metric"><strong id="completeCount">0/10</strong><span>checks complete</span></div>
+            <div class="metric"><strong id="scorePercent">0%</strong><span>current score</span></div>
+            <div class="metric"><strong id="productCount">0/2</strong><span>products saved</span></div>
+          </div>
+        </div>
+      </section>
+
+      <div class="tabs" role="tablist" aria-label="Activity sections">
+        <button id="readingTab" class="tab" type="button" role="tab" aria-selected="true" aria-controls="readingPanel">Reading</button>
+        <button id="trolleyTab" class="tab" type="button" role="tab" aria-selected="false" aria-controls="trolleyPanel">Trolley Analysis</button>
+        <button id="credoTab" class="tab" type="button" role="tab" aria-selected="false" aria-controls="credoPanel">Credo Builder</button>
+        <button id="reviewTab" class="tab locked" type="button" role="tab" aria-selected="false" aria-controls="reviewPanel" aria-disabled="true">Review &amp; Submit</button>
+      </div>
+
+      <section id="readingPanel" class="tab-panel" role="tabpanel" aria-labelledby="readingTab">
+        <div class="panel">
+          <h2>Ethical Theories and Personal Boundaries</h2>
+          <p>Use ethical theories to apply the language and logic of major philosophers and schools of thought. Then define personal boundaries before incentives, fear, loyalty, or time pressure can weaken them.</p>
+          <div class="reading-nav" role="tablist" aria-label="Reading topics">
+            <button id="theoryReadingTab" class="reading-button" type="button" role="tab" aria-selected="true" aria-controls="theoryReadingPanel">Ethical Theories (6)</button>
+            <button id="credoReadingTab" class="reading-button" type="button" role="tab" aria-selected="false" aria-controls="credoReadingPanel">Personal Credo</button>
+          </div>
+          <section id="theoryReadingPanel" class="reading-panel" role="tabpanel" aria-labelledby="theoryReadingTab">
+            <div id="theoryList" class="accordion-list"></div>
+          </section>
+          <section id="credoReadingPanel" class="reading-panel" role="tabpanel" aria-labelledby="credoReadingTab" hidden>
+            <div class="notice"><strong>A credo is a boundary document, not a slogan.</strong> It states what you will and will not do when professional rewards, relationships, or pressure are at stake.</div>
+            <div id="credoReadingList" class="accordion-list"></div>
+          </section>
+        </div>
+      </section>
+
+      <section id="trolleyPanel" class="tab-panel" role="tabpanel" aria-labelledby="trolleyTab" hidden>
+        <div class="panel">
+          <h2>The Trolley Problem</h2>
+          <p>A runaway trolley is heading toward five workers on the main track. You can pull a lever to divert it to a side track where one worker stands. The visual previews the two paths; it does not resolve the ethical question.</p>
+          <figure class="trolley-figure">
+            <img src="assets/trolley-problem.png" width="1672" height="941" alt="A maroon trolley approaches a track switch. Five workers stand on the main track, one worker stands on the side track, and a manual lever controls the switch.">
+            <figcaption>The classic switch case: do nothing and the trolley remains on the main track, or pull the lever and redirect it to the side track. Image credit: original illustration generated for this LES 305 activity using OpenAI ImageGen; not sourced from an external website.</figcaption>
+          </figure>
+
+          <section class="motion-lab" aria-labelledby="preview-heading">
+            <h3 id="preview-heading">Preview the Two Paths</h3>
+            <div class="motion-stage" aria-hidden="true">
+              <svg class="motion-svg" viewBox="0 0 800 360" role="img" aria-label="Animated diagram of the trolley switch with five workers standing on the main track and one worker standing on the side track">
+                <defs>
+                  <g id="workerIcon">
+                    <path d="M3 9 Q4 1 12 1 Q20 1 21 9 L23 9 L23 13 L1 13 L1 9 Z" fill="#ffc627" stroke="#191919" stroke-width="2"></path>
+                    <circle cx="12" cy="18" r="7" fill="#c98a64" stroke="#191919" stroke-width="2"></circle>
+                    <rect x="4" y="24" width="16" height="21" rx="4" fill="#ff7f32" stroke="#191919" stroke-width="2"></rect>
+                    <path d="M8 25 L12 33 L16 25 M5 35 L19 35" fill="none" stroke="#fff8df" stroke-width="2"></path>
+                    <path d="M5 29 L1 41 M19 29 L23 41" fill="none" stroke="#484848" stroke-width="5" stroke-linecap="round"></path>
+                    <circle cx="1" cy="42" r="3" fill="#c98a64" stroke="#191919" stroke-width="1.5"></circle>
+                    <circle cx="23" cy="42" r="3" fill="#c98a64" stroke="#191919" stroke-width="1.5"></circle>
+                    <path d="M9 44 L8 56 M15 44 L16 56" fill="none" stroke="#006a96" stroke-width="6" stroke-linecap="round"></path>
+                    <path d="M4 58 L9 58 M15 58 L20 58" fill="none" stroke="#191919" stroke-width="4" stroke-linecap="round"></path>
+                  </g>
+                </defs>
+
+                <path class="ties" d="M30 175 L770 175"></path>
+                <path class="rail" d="M30 165 L770 165"></path>
+                <path class="rail" d="M30 185 L770 185"></path>
+
+                <path class="ties" d="M315 175 L760 310"></path>
+                <path class="rail" d="M315 165 L760 300"></path>
+                <path class="rail" d="M315 185 L760 320"></path>
+                <circle class="junction-marker" cx="315" cy="175" r="12"></circle>
+
+                <text class="svg-label" x="500" y="82">5 workers on main track</text>
+                <g transform="translate(585 118)"><use href="#workerIcon"></use></g>
+                <g transform="translate(622 118)"><use href="#workerIcon"></use></g>
+                <g transform="translate(659 118)"><use href="#workerIcon"></use></g>
+                <g transform="translate(696 118)"><use href="#workerIcon"></use></g>
+                <g transform="translate(733 118)"><use href="#workerIcon"></use></g>
+
+                <text class="svg-label" x="525" y="346">1 worker on side track</text>
+                <g transform="translate(695 234)"><use href="#workerIcon"></use></g>
+
+                <g id="trolleyToken" transform="translate(45 120)">
+                  <rect class="svg-trolley-body" x="0" y="0" width="78" height="40" rx="5"></rect>
+                  <rect class="svg-trolley-window" x="8" y="8" width="17" height="13" rx="2"></rect>
+                  <rect class="svg-trolley-window" x="31" y="8" width="17" height="13" rx="2"></rect>
+                  <rect class="svg-trolley-window" x="54" y="8" width="16" height="13" rx="2"></rect>
+                  <circle class="svg-trolley-wheel" cx="17" cy="48" r="7"></circle>
+                  <circle class="svg-trolley-wheel" cx="61" cy="48" r="7"></circle>
+                  <text class="svg-trolley-text" x="39" y="35" text-anchor="middle">TROLLEY</text>
+                </g>
+              </svg>
+            </div>
+            <div class="actions">
+              <button id="previewMainBtn" class="secondary" type="button">Preview: Do Nothing</button>
+              <button id="previewSideBtn" class="secondary" type="button">Preview: Pull Lever</button>
+              <button id="resetPreviewBtn" class="neutral" type="button">Reset Preview</button>
+            </div>
+            <p id="motionStatus" class="motion-status" role="status" aria-live="polite">Choose a preview to see which track the trolley follows.</p>
+          </section>
+
+          <div class="notice"><strong>Analyze before deciding.</strong> Use ethical theories to decide what to do: pull the lever or not? Remember, if you do nothing, five people will perish. If you pull the lever, one person perishes. Engage in ethical analysis that does not begin with "I think," but instead with "According to this ethical theory or philosopher..." Draw on major moral philosophers and ethical schools of thought to apply their language and logic.</div>
+          <div id="trolleyQuestionList" class="accordion-list"></div>
+
+          <section class="completion-box" aria-labelledby="conclusion-heading">
+            <h3 id="conclusion-heading">Your Trolley Conclusion <span class="privacy-note">(required, not scored)</span></h3>
+            <fieldset>
+              <legend>What would you do?</legend>
+              <div class="choices">
+                <label class="choice"><input type="radio" name="trolley-decision" value="Pull the lever">Pull the lever and divert the trolley to the side track.</label>
+                <label class="choice"><input type="radio" name="trolley-decision" value="Do not pull the lever">Do not pull the lever; allow the trolley to remain on the main track.</label>
+              </div>
+            </fieldset>
+            <label for="trolleyRationale">Explain your reasoning using at least one ethical theory</label>
+            <p class="field-help">Begin with the theory, such as "According to utilitarianism..." rather than only "I think..."</p>
+            <textarea id="trolleyRationale" placeholder="According to..."></textarea>
+            <div class="actions">
+              <button id="saveConclusionBtn" class="primary" type="button">Save Conclusion &amp; Mark Complete</button>
+            </div>
+            <p id="conclusionStatus" class="status" role="status" aria-live="polite">Your conclusion has not been saved.</p>
+          </section>
+        </div>
+      </section>
+
+      <section id="credoPanel" class="tab-panel" role="tabpanel" aria-labelledby="credoTab" hidden>
+        <div class="panel">
+          <h2>Personal Credo Builder</h2>
+          <p>Your writing is private to this activity and is not evaluated or sent to Canvas. Define your ethical boundaries before an ethical dilemma arises, while you have time to think. Preparing a credo before an ethical dilemma arises is key because we tend to make ethical mistakes under pressure when we are unprepared. Ask yourself: What are my ethical boundaries? What would I never do to get a job, get a promotion, or win a contract? A scientist might say, "I would never falsify my research data to get published." A chief financial officer might say, "I would never sign off on financial records without knowing they are true and accurate." A professor might say, "I would never grade a student's work without reading it."</p>
+          <div class="form-grid">
+            <div class="field">
+              <label for="valuesInput">1. Values and commitments</label>
+              <p class="field-help">What values should your conduct consistently express?</p>
+              <textarea id="valuesInput" placeholder="I will act with..."></textarea>
+            </div>
+            <div class="field">
+              <label for="boundariesInput">2. Boundaries you will not cross</label>
+              <p class="field-help">What would you never do to get a job, promotion, contract, grade, or other advantage?</p>
+              <textarea id="boundariesInput" placeholder="I will never..."></textarea>
+            </div>
+            <div class="field">
+              <label for="pressureInput">3. Your plan under pressure</label>
+              <p class="field-help">What will you do if a leader, client, peer, or deadline pushes you toward a boundary?</p>
+              <textarea id="pressureInput" placeholder="When I feel pressured, I will..."></textarea>
+            </div>
+            <div class="field">
+              <label for="accountabilityInput">4. Accountability</label>
+              <p class="field-help">Who or what will help you pause, test the decision, and speak up?</p>
+              <textarea id="accountabilityInput" placeholder="I will seek guidance from..."></textarea>
+            </div>
+          </div>
+          <div class="actions">
+            <button id="buildCredoBtn" class="secondary" type="button">Build Credo Draft</button>
+          </div>
+          <label for="credoDraft">Your personal credo <span class="privacy-note">(required, not scored)</span></label>
+          <p class="field-help">Edit the draft until it sounds like a commitment you could use in a real decision.</p>
+          <textarea id="credoDraft" class="credo-draft" placeholder="Complete the prompts, then build or write your credo here."></textarea>
+          <div class="actions">
+            <button id="saveCredoBtn" class="primary" type="button">Save Credo &amp; Mark Complete</button>
+          </div>
+          <p id="credoStatus" class="status" role="status" aria-live="polite">Your credo has not been saved.</p>
+        </div>
+      </section>
+
+      <section id="reviewPanel" class="tab-panel" role="tabpanel" aria-labelledby="reviewTab" hidden>
+        <div class="panel" aria-labelledby="submit-heading">
+          <h2 id="submit-heading">Required Final Step: Submit Your Score to Canvas</h2>
+          <p id="finalScore" class="score-line"></p>
+          <p id="reviewInstructions">Complete all requirements to unlock this tab.</p>
+          <div class="review-grid">
+            <section class="review-block" aria-labelledby="review-trolley-heading">
+              <h3 id="review-trolley-heading">Your Trolley Analysis</h3>
+              <p id="reviewDecision"></p>
+              <p id="reviewRationale"></p>
+              <div id="reviewChecks" class="review-list"></div>
+            </section>
+            <section class="review-block" aria-labelledby="review-credo-heading">
+              <h3 id="review-credo-heading">Your Personal Credo</h3>
+              <p class="field-help">You may revise this copy before downloading it. Your credo is not sent to Canvas.</p>
+              <label for="reviewCredo">Credo text</label>
+              <textarea id="reviewCredo" class="credo-draft"></textarea>
+              <div class="actions">
+                <button id="copyCredoBtn" class="secondary" type="button">Copy Credo</button>
+                <button id="downloadCredoBtn" class="secondary" type="button">Download Credo</button>
+              </div>
+              <p id="copyStatus" class="status" role="status" aria-live="polite"></p>
+            </section>
+          </div>
+          <div class="actions">
+            <button id="downloadBriefBtn" class="secondary" type="button">Download Full Take-Away Brief</button>
+            <button id="submitBtn" class="primary" type="button">Submit Score to Canvas</button>
+          </div>
+          <p id="submitStatus" class="status" role="status" aria-live="polite"></p>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script>
+    const theories = [
+      {
+        title: "Categorical Imperative - Immanuel Kant (1724-1804)",
+        body: "Kantian ethics asks whether the principle behind an action could be willed as a universal rule. What if everybody behaved this way? Would it produce a world in which we would hope to live? If not, it is unethical. For example, cheating on an exam is unethical because if everyone cheated, we would never know who knows the material and who just cheats. Nobody wants a doctor who cheated through medical school. Kant also believed it is unethical to use people as a means to an end, that is, merely as tools.",
+        question: "What if everybody behaved this way, and does the action treat people as ends rather than merely as tools?"
+      },
+      {
+        title: "Utilitarianism - Jeremy Bentham (1748-1832)",
+        body: "Utilitarian reasoning compares foreseeable benefits and harms and seeks the greatest overall good or happiness for the greatest number of people possible. A utilitarian would test an ethical decision this way: Am I producing the greatest good possible with my ethical decision? This is also known as the Greatest Happiness Principle.",
+        question: "Am I producing the greatest overall good or happiness possible with this decision?"
+      },
+      {
+        title: "Virtue Ethics - Plato (427-347 BC) and Aristotle (384-322 BC)",
+        body: "Virtue ethics asks what a person of good character would do and emphasizes becoming virtuous through repeated habits of justice, courage, honesty, compassion, and practical wisdom. Aristotle, a student of Plato, said you become virtuous by making it a habit to do virtuous things. Choose to do what a person of good character would do, and you will become virtuous. In Aristotle's words: 'Moral excellence comes about as a result of habit. We become just by doing just acts, temperate by doing temperate acts, brave by doing brave acts.'",
+        question: "What would a person of good character do, and what kind of habit would this action build?"
+      },
+      {
+        title: "Natural Law - Thomas Aquinas (approximately 1225-1274)",
+        body: "Natural law holds that moral principles either come from God or can be discovered through reason and intellect, and therefore our rights are not created solely by government. Because our rights do not come from the government, the government cannot take them away, a revolutionary idea at the time. The Declaration of Independence reflects this philosophy: 'We hold these truths to be self-evident, that all men are created equal, that they are endowed by their Creator with certain unalienable Rights, that among these are Life, Liberty and the pursuit of Happiness.'",
+        question: "What do reason, moral duties, rights, and basic human purposes require?"
+      },
+      {
+        title: "Contract School of Ethics - John Rawls (1921-2002)",
+        body: "Contractarians believe ethical standards are best established through a social contract. John Rawls was a contractarian and moral philosopher who developed the idea of the Veil of Ignorance. People would vote for rules in their society without knowing their own race, gender, wealth, health, intelligence, social class, or anything else about their position in society. They would make impartial choices without selfish bias and promote fairness and justice because they might themselves be at the very bottom of this society and would want to protect everyone in it. Rawls explained that no one knows their place or status in society or their fortune in the distribution of natural assets and abilities; the principles of justice are chosen behind a veil of ignorance.",
+        question: "What rule would I choose if I did not know what position I would occupy in society?"
+      },
+      {
+        title: "Moral Relativism",
+        body: "Moral relativism holds that what is right or wrong depends on the circumstances. This can lead people to list the pros and cons of ethical decisions that reflect the pressures of the moment rather than apply sound ethical analysis. They act as if right and wrong are not absolute but only relative to a specific time and situation.",
+        question: "Am I applying sound ethical analysis, or only responding to the pressures and accepted practices of this moment?"
+      }
+    ];
+
+    const credoReading = [
+      {
+        title: "What a Personal Credo Does",
+        body: "A mission statement describes aspirations. A personal credo sets ethical parameters: the lines you will not cross and the commitments you will keep even when an easier or more rewarding option is available.",
+        question: "What would I never do to get a job, promotion, contract, grade, or other advantage?"
+      },
+      {
+        title: "Why Write It Before the Dilemma",
+        body: "Pressure narrows attention. A credo lets you make difficult boundary decisions while you have time to reflect, seek guidance, and prepare language for saying no or proposing an ethical alternative.",
+        question: "What pressure is most likely to weaken my judgment, and what will I do when it appears?"
+      },
+      {
+        title: "Make It Specific Enough to Use",
+        body: "A useful credo names conduct and response. For example: I will not falsify evidence, conceal a material risk, claim another person's work, or approve records I have not verified. If pressured, I will pause, document the concern, and seek advice.",
+        question: "Could this statement guide my next action in a real workplace dilemma?"
+      }
+    ];
+
+    const questionGroups = [
+      {
+        title: "1. Analyze the Case",
+        questions: [
+          {
+            prompt: "Which statement belongs in the initial fact record?",
+            choices: [
+              { text: "The trolley is moving toward five workers, and pulling the lever diverts it toward one worker.", correct: true },
+              { text: "All six workers knowingly accepted the exact risk in this scenario.", correct: false },
+              { text: "Pulling the lever guarantees that no person will be harmed.", correct: false },
+              { text: "The person at the lever caused the trolley to run away.", correct: false }
+            ],
+            correctFeedback: "Strong choice. Ethical analysis starts with what the scenario actually states rather than adding blame, consent, or certainty.",
+            hint: "Which option repeats only information supplied by the scenario and avoids an unsupported assumption?"
+          },
+          {
+            prompt: "Which missing information could materially change the analysis?",
+            choices: [
+              { text: "Whether there is any way to stop or warn, how certain each outcome is, and whether anyone can move to safety.", correct: true },
+              { text: "Which worker has the highest salary.", correct: false },
+              { text: "Whether the trolley is painted an attractive color.", correct: false },
+              { text: "Which option would be easiest to explain in one sentence.", correct: false }
+            ],
+            correctFeedback: "Strong choice. Available alternatives and uncertainty about outcomes can change both duties and consequences.",
+            hint: "Which information might create another option or alter the predicted harms?"
+          }
+        ]
+      },
+      {
+        title: "2. Apply Ethical Theories",
+        questions: [
+          {
+            prompt: "Which reasoning most accurately represents the categorical imperative?",
+            choices: [
+              { text: "Ask whether the principle behind intervening could be universalized and whether the choice treats every person as an end rather than merely as a means.", correct: true },
+              { text: "Choose whichever option produces the largest numerical benefit.", correct: false },
+              { text: "Follow the local custom because morality changes with the situation.", correct: false },
+              { text: "Choose the option that protects the decision-maker's reputation.", correct: false }
+            ],
+            correctFeedback: "Strong choice. Kantian reasoning examines the principle of action and respect for persons, not only the numerical outcome.",
+            hint: "Which option asks about a universal principle and the moral status of persons?"
+          },
+          {
+            prompt: "How would a straightforward utilitarian analysis approach the classic trolley case?",
+            choices: [
+              { text: "Compare the foreseeable harms and pull the lever because one death is less total harm than five deaths.", correct: true },
+              { text: "Refuse to compare consequences because outcomes never matter.", correct: false },
+              { text: "Choose the action that requires the least effort from the person at the lever.", correct: false },
+              { text: "Follow whatever choice is most common in the local community.", correct: false }
+            ],
+            correctFeedback: "Strong choice. A basic utilitarian calculation emphasizes aggregate consequences and minimizing total harm.",
+            hint: "Which option explicitly compares the expected consequences for everyone affected?"
+          },
+          {
+            prompt: "Which question applies Kant's warning against using people merely as a means to an end?",
+            choices: [
+              { text: "Does the decision respect each worker as a person with inherent worth, rather than treating anyone only as a tool for producing a preferred outcome?", correct: true },
+              { text: "Which worker contributes the least economic value?", correct: false },
+              { text: "Can the decision-maker keep the action secret from the workers?", correct: false },
+              { text: "Which option best protects the decision-maker from criticism?", correct: false }
+            ],
+            correctFeedback: "Strong choice. Kant's principle requires respect for persons and challenges decisions that reduce someone to an instrument for another goal.",
+            hint: "Look for the option that examines each person's inherent worth rather than usefulness, secrecy, or reputation."
+          },
+          {
+            prompt: "Which question most accurately applies virtue ethics?",
+            choices: [
+              { text: "What would a practically wise, just, courageous, and compassionate person do, and what kind of character would this choice cultivate?", correct: true },
+              { text: "Which action is most profitable for the trolley operator?", correct: false },
+              { text: "Which action can remain secret from the public?", correct: false },
+              { text: "Which action follows the most popular current opinion?", correct: false }
+            ],
+            correctFeedback: "Strong choice. Virtue ethics connects the action to practical wisdom, character, and moral habit.",
+            hint: "Which option evaluates both the choice and the kind of person repeated choices help someone become?"
+          },
+          {
+            prompt: "Which analysis best represents natural law reasoning?",
+            choices: [
+              { text: "Use reason to examine moral duties, what is right, and what respects basic human purposes.", correct: true },
+              { text: "Treat the absence of a written trolley law as permission for any action.", correct: false },
+              { text: "Choose whichever outcome creates the best publicity.", correct: false },
+              { text: "Assume power determines which worker has a right to protection.", correct: false }
+            ],
+            correctFeedback: "Strong choice. Natural law reasoning examines basic goods and moral duties through reason rather than relying only on enacted rules.",
+            hint: "Which option asks about fundamental human goods and duties beyond written policy?"
+          },
+          {
+            prompt: "How should Rawls's veil of ignorance shape the analysis?",
+            choices: [
+              { text: "Choose a rule without knowing whether you will be the decision-maker, the lone worker, or one of the five workers.", correct: true },
+              { text: "Choose the rule after learning which position gives you the greatest personal advantage.", correct: false },
+              { text: "Ignore fairness and count only the decision-maker's preferences.", correct: false },
+              { text: "Let the most powerful person define the social contract.", correct: false }
+            ],
+            correctFeedback: "Strong choice. The veil removes knowledge that could let someone tailor the rule to personal advantage.",
+            hint: "Which option makes the rule-maker uncertain about the position they will occupy?"
+          },
+          {
+            prompt: "Which statement identifies the course's concern about moral relativism?",
+            choices: [
+              { text: "A person may treat current norms or pressures as sufficient proof that a choice is right instead of giving a defensible ethical analysis.", correct: true },
+              { text: "A person compares stakeholder harms using a consistent ethical principle.", correct: false },
+              { text: "A person states a universal rule and tests whether it can be followed by everyone.", correct: false },
+              { text: "A person uses the veil of ignorance to reduce self-interest.", correct: false }
+            ],
+            correctFeedback: "Strong choice. The concern is that situational acceptance can replace principled analysis.",
+            hint: "Which option relies on what is accepted now rather than a reasoned ethical standard?"
+          }
+        ]
+      },
+      {
+        title: "3. Form a Defensible Conclusion",
+        questions: [
+          {
+            prompt: "Which conclusion demonstrates the strongest ethical analysis?",
+            choices: [
+              { text: "According to a named theory, I would choose an action for these reasons; a competing theory raises this objection, and this is why my conclusion remains defensible.", correct: true },
+              { text: "I think my choice is obvious, so no theory or counterargument is necessary.", correct: false },
+              { text: "Most people probably agree with me, which proves the choice is ethical.", correct: false },
+              { text: "Both options are unpleasant, so ethical analysis cannot contribute anything.", correct: false }
+            ],
+            correctFeedback: "Strong choice. A defensible conclusion names its framework, applies its reasoning, and acknowledges a serious competing consideration.",
+            hint: "Which option uses a theory's logic and responds to a meaningful objection instead of relying on preference or popularity?"
+          }
+        ]
+      }
+    ];
+
+    const flatQuestions = questionGroups.flatMap((group) => group.questions.map((question) => ({ ...question, group: group.title })));
+    const shuffledChoices = flatQuestions.map((question) => shuffle(question.choices.map((choice) => ({ ...choice }))));
+    const state = {
+      openReading: "",
+      readingTopic: "theories",
+      openQuestionGroup: questionGroups[0].title,
+      answers: Array(flatQuestions.length).fill(null),
+      checked: Array(flatQuestions.length).fill(false),
+      correct: Array(flatQuestions.length).fill(false),
+      trolleyDecision: "",
+      trolleyRationale: "",
+      conclusionSaved: false,
+      credo: { values: "", boundaries: "", pressure: "", accountability: "", draft: "" },
+      credoSaved: false
+    };
+
+    let scormApi = null;
+    let scormVersion = null;
+    let trolleyAnimationFrame = null;
+
+    const els = {
+      completeCount: document.getElementById("completeCount"), scorePercent: document.getElementById("scorePercent"), productCount: document.getElementById("productCount"),
+      readingTab: document.getElementById("readingTab"), trolleyTab: document.getElementById("trolleyTab"), credoTab: document.getElementById("credoTab"), reviewTab: document.getElementById("reviewTab"),
+      readingPanel: document.getElementById("readingPanel"), trolleyPanel: document.getElementById("trolleyPanel"), credoPanel: document.getElementById("credoPanel"), reviewPanel: document.getElementById("reviewPanel"),
+      theoryReadingTab: document.getElementById("theoryReadingTab"), credoReadingTab: document.getElementById("credoReadingTab"), theoryReadingPanel: document.getElementById("theoryReadingPanel"), credoReadingPanel: document.getElementById("credoReadingPanel"), theoryList: document.getElementById("theoryList"), credoReadingList: document.getElementById("credoReadingList"),
+      trolleyToken: document.getElementById("trolleyToken"), motionStatus: document.getElementById("motionStatus"), trolleyQuestionList: document.getElementById("trolleyQuestionList"), trolleyRationale: document.getElementById("trolleyRationale"), conclusionStatus: document.getElementById("conclusionStatus"),
+      valuesInput: document.getElementById("valuesInput"), boundariesInput: document.getElementById("boundariesInput"), pressureInput: document.getElementById("pressureInput"), accountabilityInput: document.getElementById("accountabilityInput"), credoDraft: document.getElementById("credoDraft"), credoStatus: document.getElementById("credoStatus"),
+      finalScore: document.getElementById("finalScore"), reviewInstructions: document.getElementById("reviewInstructions"), reviewDecision: document.getElementById("reviewDecision"), reviewRationale: document.getElementById("reviewRationale"), reviewChecks: document.getElementById("reviewChecks"), reviewCredo: document.getElementById("reviewCredo"), copyStatus: document.getElementById("copyStatus"), submitStatus: document.getElementById("submitStatus"),
+      copyCredoBtn: document.getElementById("copyCredoBtn"), downloadCredoBtn: document.getElementById("downloadCredoBtn"), downloadBriefBtn: document.getElementById("downloadBriefBtn"), submitBtn: document.getElementById("submitBtn")
+    };
+
+    function shuffle(items) {
+      for (let index = items.length - 1; index > 0; index -= 1) {
+        const swapIndex = Math.floor(Math.random() * (index + 1));
+        [items[index], items[swapIndex]] = [items[swapIndex], items[index]];
+      }
+      return items;
+    }
+
+    function findScormApi(win) {
+      let current = win;
+      let depth = 0;
+      while (current && depth < 8) {
+        if (current.API_1484_11) return { api: current.API_1484_11, version: "2004" };
+        if (current.API) return { api: current.API, version: "1.2" };
+        if (current.parent && current.parent !== current) current = current.parent;
+        else break;
+        depth += 1;
+      }
+      if (win.opener) return findScormApi(win.opener);
+      return { api: null, version: null };
+    }
+
+    function scormInitialize() {
+      const found = findScormApi(window);
+      scormApi = found.api;
+      scormVersion = found.version;
+      if (!scormApi) return;
+      if (scormVersion === "2004") {
+        scormApi.Initialize("");
+        scormApi.SetValue("cmi.completion_status", "incomplete");
+        scormApi.SetValue("cmi.success_status", "unknown");
+        scormApi.Commit("");
+      } else {
+        scormApi.LMSInitialize("");
+        scormApi.LMSSetValue("cmi.core.lesson_status", "incomplete");
+        scormApi.LMSCommit("");
+      }
+    }
+
+    function scormSubmit(score) {
+      if (!scormApi) return false;
+      if (scormVersion === "2004") {
+        scormApi.SetValue("cmi.score.min", "0");
+        scormApi.SetValue("cmi.score.max", "100");
+        scormApi.SetValue("cmi.score.raw", String(score));
+        scormApi.SetValue("cmi.score.scaled", String(score / 100));
+        scormApi.SetValue("cmi.completion_status", "completed");
+        scormApi.SetValue("cmi.success_status", score >= 70 ? "passed" : "failed");
+        scormApi.Commit("");
+        scormApi.Terminate("");
+      } else {
+        scormApi.LMSSetValue("cmi.core.score.min", "0");
+        scormApi.LMSSetValue("cmi.core.score.max", "100");
+        scormApi.LMSSetValue("cmi.core.score.raw", String(score));
+        scormApi.LMSSetValue("cmi.core.lesson_status", score >= 70 ? "passed" : "completed");
+        scormApi.LMSCommit("");
+        scormApi.LMSFinish("");
+      }
+      return true;
+    }
+
+    function scoreData() {
+      const complete = state.checked.filter(Boolean).length;
+      const correct = state.correct.filter(Boolean).length;
+      return { complete, correct, percent: Math.round((correct / flatQuestions.length) * 100) };
+    }
+
+    function productsComplete() { return Number(state.conclusionSaved) + Number(state.credoSaved); }
+    function isComplete() { return state.checked.every(Boolean) && state.conclusionSaved && state.credoSaved; }
+
+    function setMainTab(name, focus = true) {
+      if (name === "review" && !isComplete()) {
+        els.submitStatus.textContent = "Complete the 10 checks and save both written products before opening Review & Submit.";
+        return;
+      }
+      const map = { reading: [els.readingTab, els.readingPanel], trolley: [els.trolleyTab, els.trolleyPanel], credo: [els.credoTab, els.credoPanel], review: [els.reviewTab, els.reviewPanel] };
+      Object.entries(map).forEach(([key, value]) => {
+        value[0].setAttribute("aria-selected", String(key === name));
+        value[1].hidden = key !== name;
+      });
+      if (name === "review") renderReview();
+      if (focus) map[name][0].focus();
+    }
+
+    function setReadingTopic(topic, focus = true) {
+      state.readingTopic = topic;
+      const theoriesSelected = topic === "theories";
+      els.theoryReadingTab.setAttribute("aria-selected", String(theoriesSelected));
+      els.credoReadingTab.setAttribute("aria-selected", String(!theoriesSelected));
+      els.theoryReadingPanel.hidden = !theoriesSelected;
+      els.credoReadingPanel.hidden = theoriesSelected;
+      if (focus) (theoriesSelected ? els.theoryReadingTab : els.credoReadingTab).focus();
+    }
+
+    function renderReadingList(items, list, prefix) {
+      list.innerHTML = "";
+      items.forEach((item, index) => {
+        const key = `${prefix}-${index}`;
+        const panelId = `${key}-panel`;
+        const article = document.createElement("article");
+        article.className = "accordion-item";
+        const heading = document.createElement("h3");
+        const trigger = document.createElement("button");
+        trigger.type = "button";
+        trigger.className = "accordion-trigger";
+        trigger.setAttribute("aria-controls", panelId);
+        trigger.setAttribute("aria-expanded", String(state.openReading === key));
+        const title = document.createElement("span");
+        title.textContent = item.title;
+        const icon = document.createElement("span");
+        icon.className = "accordion-icon";
+        icon.setAttribute("aria-hidden", "true");
+        icon.textContent = state.openReading === key ? "-" : "+";
+        trigger.append(title, icon);
+        heading.appendChild(trigger);
+        const panel = document.createElement("div");
+        panel.id = panelId;
+        panel.className = "accordion-panel";
+        panel.hidden = state.openReading !== key;
+        const detail = document.createElement("div");
+        detail.className = "reading-detail";
+        const body = document.createElement("p");
+        body.textContent = item.body;
+        const callout = document.createElement("div");
+        callout.className = "question-callout";
+        const label = document.createElement("strong");
+        label.textContent = "Question to ask";
+        const question = document.createElement("span");
+        question.textContent = item.question;
+        callout.append(label, question);
+        detail.append(body, callout);
+        panel.appendChild(detail);
+        trigger.addEventListener("click", () => {
+          state.openReading = state.openReading === key ? "" : key;
+          renderReading();
+        });
+        article.append(heading, panel);
+        list.appendChild(article);
+      });
+    }
+
+    function renderReading() {
+      renderReadingList(theories, els.theoryList, "theory");
+      renderReadingList(credoReading, els.credoReadingList, "credo");
+      setReadingTopic(state.readingTopic, false);
+    }
+
+    function renderQuestions() {
+      els.trolleyQuestionList.innerHTML = "";
+      let globalIndex = 0;
+      questionGroups.forEach((group, groupIndex) => {
+        const panelId = `question-group-${groupIndex}`;
+        const article = document.createElement("article");
+        article.className = "accordion-item";
+        const heading = document.createElement("h3");
+        const trigger = document.createElement("button");
+        trigger.type = "button";
+        trigger.className = "accordion-trigger";
+        trigger.setAttribute("aria-controls", panelId);
+        trigger.setAttribute("aria-expanded", String(state.openQuestionGroup === group.title));
+        const groupIndices = flatQuestions.map((question, index) => ({ question, index })).filter((item) => item.question.group === group.title).map((item) => item.index);
+        const groupComplete = groupIndices.filter((index) => state.checked[index]).length;
+        const title = document.createElement("span");
+        title.textContent = `${group.title} (${groupComplete} of ${group.questions.length} checked)`;
+        const icon = document.createElement("span");
+        icon.className = "accordion-icon";
+        icon.setAttribute("aria-hidden", "true");
+        icon.textContent = state.openQuestionGroup === group.title ? "-" : "+";
+        trigger.append(title, icon);
+        heading.appendChild(trigger);
+        const panel = document.createElement("div");
+        panel.id = panelId;
+        panel.className = "accordion-panel";
+        panel.hidden = state.openQuestionGroup !== group.title;
+        group.questions.forEach(() => {
+          const index = globalIndex;
+          const question = flatQuestions[index];
+          const card = document.createElement("section");
+          card.className = "question-card";
+          const number = document.createElement("p");
+          number.className = "question-number";
+          number.textContent = `Decision ${index + 1} of ${flatQuestions.length}`;
+          const fieldset = document.createElement("fieldset");
+          const legend = document.createElement("legend");
+          legend.textContent = question.prompt;
+          const choices = document.createElement("div");
+          choices.className = "choices";
+          shuffledChoices[index].forEach((choice, choiceIndex) => {
+            const label = document.createElement("label");
+            label.className = "choice";
+            const input = document.createElement("input");
+            input.type = "radio";
+            input.name = `question-${index}`;
+            input.value = String(choiceIndex);
+            input.checked = state.answers[index] === choiceIndex;
+            input.addEventListener("change", () => {
+              state.answers[index] = choiceIndex;
+              if (!state.checked[index]) {
+                const feedback = document.getElementById(`feedback-${index}`);
+                feedback.className = "feedback";
+                feedback.textContent = "Ready to check. Review how closely the reasoning follows the named theory or process step.";
+              }
+            });
+            label.append(input, document.createTextNode(choice.text));
+            choices.appendChild(label);
+          });
+          fieldset.append(legend, choices);
+          const actions = document.createElement("div");
+          actions.className = "actions";
+          const check = document.createElement("button");
+          check.type = "button";
+          check.className = "primary";
+          check.textContent = "Check this decision";
+          check.addEventListener("click", () => checkQuestion(index));
+          const reset = document.createElement("button");
+          reset.type = "button";
+          reset.className = "secondary";
+          reset.textContent = "Reset this decision";
+          reset.addEventListener("click", () => resetQuestion(index));
+          actions.append(check, reset);
+          const feedback = document.createElement("div");
+          feedback.id = `feedback-${index}`;
+          feedback.setAttribute("role", "status");
+          feedback.setAttribute("aria-live", "polite");
+          if (state.checked[index]) {
+            feedback.className = `feedback ${state.correct[index] ? "correct" : "incorrect"}`;
+            feedback.textContent = state.correct[index] ? question.correctFeedback : `Take another look. ${question.hint}`;
+          } else {
+            feedback.className = "feedback";
+            feedback.textContent = "Choose a response, then check this decision. Feedback will guide your reasoning without displaying the answer.";
+          }
+          card.append(number, fieldset, actions, feedback);
+          panel.appendChild(card);
+          globalIndex += 1;
+        });
+        trigger.addEventListener("click", () => {
+          state.openQuestionGroup = state.openQuestionGroup === group.title ? "" : group.title;
+          renderQuestions();
+        });
+        article.append(heading, panel);
+        els.trolleyQuestionList.appendChild(article);
+      });
+    }
+
+    function checkQuestion(index) {
+      if (state.answers[index] === null) {
+        const feedback = document.getElementById(`feedback-${index}`);
+        feedback.className = "feedback incorrect";
+        feedback.textContent = "Select an option before checking this decision.";
+        return;
+      }
+      state.checked[index] = true;
+      state.correct[index] = shuffledChoices[index][state.answers[index]].correct;
+      renderQuestions();
+      renderProgress();
+    }
+
+    function resetQuestion(index) {
+      state.answers[index] = null;
+      state.checked[index] = false;
+      state.correct[index] = false;
+      renderQuestions();
+      renderProgress();
+    }
+
+    function setTrolleyPosition(x, y, angle = 0) {
+      els.trolleyToken.setAttribute("transform", `translate(${x} ${y}) rotate(${angle} 39 48)`);
+    }
+
+    function easedProgress(value) {
+      return value < .5 ? 2 * value * value : 1 - Math.pow(-2 * value + 2, 2) / 2;
+    }
+
+    function animateTrolley(route) {
+      if (trolleyAnimationFrame) cancelAnimationFrame(trolleyAnimationFrame);
+      const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      const destination = route === "main" ? { x: 470, y: 120, angle: 0 } : { x: 500, y: 190, angle: 17 };
+      if (reducedMotion) {
+        setTrolleyPosition(destination.x, destination.y, destination.angle);
+        trolleyAnimationFrame = null;
+        return;
+      }
+      const duration = 2200;
+      const started = performance.now();
+      function frame(now) {
+        const raw = Math.min((now - started) / duration, 1);
+        const progress = easedProgress(raw);
+        if (route === "main") {
+          setTrolleyPosition(45 + (425 * progress), 120, 0);
+        } else if (progress <= .55) {
+          const firstLeg = progress / .55;
+          setTrolleyPosition(45 + (240 * firstLeg), 120, 0);
+        } else {
+          const secondLeg = (progress - .55) / .45;
+          setTrolleyPosition(285 + (215 * secondLeg), 120 + (70 * secondLeg), 17 * secondLeg);
+        }
+        if (raw < 1) trolleyAnimationFrame = requestAnimationFrame(frame);
+        else trolleyAnimationFrame = null;
+      }
+      trolleyAnimationFrame = requestAnimationFrame(frame);
+    }
+
+    function previewRoute(route) {
+      if (route === "main") {
+        els.motionStatus.textContent = "Do nothing: the trolley remains on the main track, where five workers are in danger.";
+        animateTrolley("main");
+      } else if (route === "side") {
+        els.motionStatus.textContent = "Pull the lever: the trolley follows the diverging side track, where one worker is in danger.";
+        animateTrolley("side");
+      } else {
+        if (trolleyAnimationFrame) cancelAnimationFrame(trolleyAnimationFrame);
+        trolleyAnimationFrame = null;
+        setTrolleyPosition(45, 120, 0);
+        els.motionStatus.textContent = "Preview reset. Choose a path to see which track the trolley follows.";
+      }
+    }
+
+    function buildCredoDraft() {
+      state.credo.values = els.valuesInput.value.trim();
+      state.credo.boundaries = els.boundariesInput.value.trim();
+      state.credo.pressure = els.pressureInput.value.trim();
+      state.credo.accountability = els.accountabilityInput.value.trim();
+      const missing = Object.entries({ values: state.credo.values, boundaries: state.credo.boundaries, pressure: state.credo.pressure, accountability: state.credo.accountability }).filter((entry) => !entry[1]);
+      if (missing.length) {
+        els.credoStatus.textContent = "Complete all four guided prompts before building your credo draft.";
+        return;
+      }
+      state.credo.draft = [
+        "My Personal Credo",
+        "",
+        `Values and commitments: ${state.credo.values}`,
+        "",
+        `Boundaries I will not cross: ${state.credo.boundaries}`,
+        "",
+        `When I face pressure: ${state.credo.pressure}`,
+        "",
+        `Accountability: ${state.credo.accountability}`
+      ].join("\n");
+      els.credoDraft.value = state.credo.draft;
+      state.credoSaved = false;
+      els.credoStatus.textContent = "Draft built. Edit it if needed, then save it to mark the Credo Builder complete.";
+      renderProgress();
+    }
+
+    function saveCredo() {
+      state.credo.draft = els.credoDraft.value.trim();
+      if (state.credo.draft.length < 80) {
+        state.credoSaved = false;
+        els.credoStatus.textContent = "Develop your credo a little further before saving. Include concrete values, boundaries, and a response to pressure.";
+        renderProgress();
+        return;
+      }
+      state.credoSaved = true;
+      els.credoStatus.textContent = "Credo saved. It will be available to copy and download on Review & Submit.";
+      renderProgress();
+    }
+
+    function saveConclusion() {
+      const selected = document.querySelector('input[name="trolley-decision"]:checked');
+      state.trolleyDecision = selected ? selected.value : "";
+      state.trolleyRationale = els.trolleyRationale.value.trim();
+      if (!state.trolleyDecision || state.trolleyRationale.length < 40) {
+        state.conclusionSaved = false;
+        els.conclusionStatus.textContent = "Choose an action and explain it with enough detail to apply at least one ethical theory.";
+        renderProgress();
+        return;
+      }
+      state.conclusionSaved = true;
+      els.conclusionStatus.textContent = "Conclusion saved. Your position and rationale are not scored or sent to Canvas.";
+      renderProgress();
+    }
+
+    function renderProgress() {
+      const score = scoreData();
+      els.completeCount.textContent = `${score.complete}/${flatQuestions.length}`;
+      els.scorePercent.textContent = `${score.percent}%`;
+      els.productCount.textContent = `${productsComplete()}/2`;
+      const unlocked = isComplete();
+      els.reviewTab.classList.toggle("locked", !unlocked);
+      els.reviewTab.setAttribute("aria-disabled", String(!unlocked));
+      els.reviewInstructions.textContent = unlocked
+        ? "All requirements are complete. Copy or download your credo and take-away brief, then submit your objective-check score to Canvas."
+        : "Complete all 10 objective checks and save both written products to unlock Canvas submission.";
+      els.finalScore.textContent = `Current Canvas score: ${score.percent}% (${score.correct} of ${flatQuestions.length} objective checks correct).`;
+    }
+
+    function renderReview() {
+      const score = scoreData();
+      renderProgress();
+      els.reviewDecision.textContent = `Decision: ${state.trolleyDecision}`;
+      els.reviewRationale.textContent = `Rationale: ${state.trolleyRationale}`;
+      els.reviewCredo.value = state.credo.draft;
+      els.reviewChecks.innerHTML = "";
+      flatQuestions.forEach((question, index) => {
+        const item = document.createElement("div");
+        item.className = "review-item";
+        const result = state.checked[index] ? (state.correct[index] ? "Correct" : "Review") : "Not checked";
+        item.textContent = `${index + 1}. ${question.group.replace(/^\d+\.\s*/, "")}: ${result}`;
+        els.reviewChecks.appendChild(item);
+      });
+      els.finalScore.textContent = `Current Canvas score: ${score.percent}% (${score.correct} of ${flatQuestions.length} objective checks correct).`;
+    }
+
+    function downloadText(filename, content) {
+      const blob = new Blob([content], { type: "text/plain" });
+      const url = URL.createObjectURL(blob);
+      const link = document.createElement("a");
+      link.href = url;
+      link.download = filename;
+      document.body.appendChild(link);
+      link.click();
+      link.remove();
+      URL.revokeObjectURL(url);
+    }
+
+    function handleTabKeys(event, tabs, currentIndex, select) {
+      let next = currentIndex;
+      if (event.key === "ArrowRight") next = (currentIndex + 1) % tabs.length;
+      else if (event.key === "ArrowLeft") next = (currentIndex - 1 + tabs.length) % tabs.length;
+      else if (event.key === "Home") next = 0;
+      else if (event.key === "End") next = tabs.length - 1;
+      else return;
+      event.preventDefault();
+      select(next);
+    }
+
+    els.readingTab.addEventListener("click", () => setMainTab("reading"));
+    els.trolleyTab.addEventListener("click", () => setMainTab("trolley"));
+    els.credoTab.addEventListener("click", () => setMainTab("credo"));
+    els.reviewTab.addEventListener("click", () => setMainTab("review"));
+    [els.readingTab, els.trolleyTab, els.credoTab, els.reviewTab].forEach((tab, index, tabs) => tab.addEventListener("keydown", (event) => {
+      handleTabKeys(event, tabs, index, (next) => {
+        const names = ["reading", "trolley", "credo", "review"];
+        if (names[next] === "review" && !isComplete()) return;
+        setMainTab(names[next]);
+      });
+    }));
+
+    els.theoryReadingTab.addEventListener("click", () => setReadingTopic("theories"));
+    els.credoReadingTab.addEventListener("click", () => setReadingTopic("credo"));
+    [els.theoryReadingTab, els.credoReadingTab].forEach((tab, index, tabs) => tab.addEventListener("keydown", (event) => handleTabKeys(event, tabs, index, (next) => setReadingTopic(next === 0 ? "theories" : "credo"))));
+
+    document.getElementById("previewMainBtn").addEventListener("click", () => previewRoute("main"));
+    document.getElementById("previewSideBtn").addEventListener("click", () => previewRoute("side"));
+    document.getElementById("resetPreviewBtn").addEventListener("click", () => previewRoute("reset"));
+    document.getElementById("saveConclusionBtn").addEventListener("click", saveConclusion);
+    document.getElementById("buildCredoBtn").addEventListener("click", buildCredoDraft);
+    document.getElementById("saveCredoBtn").addEventListener("click", saveCredo);
+
+    [els.valuesInput, els.boundariesInput, els.pressureInput, els.accountabilityInput, els.credoDraft].forEach((input) => input.addEventListener("input", () => {
+      state.credoSaved = false;
+      els.credoStatus.textContent = "Your credo has unsaved changes.";
+      renderProgress();
+    }));
+    els.trolleyRationale.addEventListener("input", () => {
+      state.conclusionSaved = false;
+      els.conclusionStatus.textContent = "Your conclusion has unsaved changes.";
+      renderProgress();
+    });
+    document.querySelectorAll('input[name="trolley-decision"]').forEach((input) => input.addEventListener("change", () => {
+      state.conclusionSaved = false;
+      els.conclusionStatus.textContent = "Your conclusion has unsaved changes.";
+      renderProgress();
+    }));
+
+    els.reviewCredo.addEventListener("input", () => {
+      state.credo.draft = els.reviewCredo.value;
+      els.copyStatus.textContent = "Credo updated in this review copy.";
+    });
+
+    els.copyCredoBtn.addEventListener("click", async () => {
+      const text = els.reviewCredo.value;
+      try {
+        await navigator.clipboard.writeText(text);
+        els.copyStatus.textContent = "Credo copied to the clipboard.";
+      } catch (error) {
+        els.reviewCredo.focus();
+        els.reviewCredo.select();
+        els.copyStatus.textContent = "The credo is selected. Use your device's copy command to copy it.";
+      }
+    });
+
+    els.downloadCredoBtn.addEventListener("click", () => downloadText("my-personal-credo.txt", els.reviewCredo.value));
+    els.downloadBriefBtn.addEventListener("click", () => {
+      const score = scoreData();
+      const lines = [
+        "LES 305 1.4 Ethical Theories and Tests Take-Away Brief",
+        `Objective-check score: ${score.percent}% (${score.correct} of ${flatQuestions.length} correct)`,
+        "",
+        "Trolley conclusion",
+        `Decision: ${state.trolleyDecision}`,
+        `Rationale: ${state.trolleyRationale}`,
+        "",
+        "Personal credo",
+        els.reviewCredo.value,
+        "",
+        "Decision checklist",
+        "- Name the ethical issue and verify the facts.",
+        "- Identify missing information and affected stakeholders.",
+        "- Apply more than one ethical lens when the dilemma is contested.",
+        "- State the theory before stating your conclusion.",
+        "- Check the decision against your personal credo before acting."
+      ];
+      downloadText("les305-1-4-take-away-brief.txt", lines.join("\n"));
+    });
+
+    els.submitBtn.addEventListener("click", () => {
+      if (!isComplete()) {
+        els.submitStatus.textContent = "Complete all checks and save both written products before submitting.";
+        return;
+      }
+      const score = scoreData();
+      const sent = scormSubmit(score.percent);
+      els.submitStatus.textContent = sent
+        ? "Your objective-check score and completion status were sent to Canvas. Your written text was not sent."
+        : "Canvas submission could not be confirmed in this local preview. In Canvas, this button sends only your objective-check score and completion status.";
+    });
+
+    window.addEventListener("beforeunload", () => {
+      if (scormApi && scormVersion === "1.2") scormApi.LMSCommit("");
+      if (scormApi && scormVersion === "2004") scormApi.Commit("");
+    });
+
+    scormInitialize();
+    renderReading();
+    renderQuestions();
+    renderProgress();
+    setMainTab("reading", false);
+  </script>
+</body>
+</html>
