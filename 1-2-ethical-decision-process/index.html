@@ -1,0 +1,417 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>LES 305 1.2 Steps to Analyze Ethical Dilemmas</title>
+  <style>
+    :root {
+      --maroon: #8c1d40;
+      --gold: #ffc627;
+      --ink: #191919;
+      --muted: #484848;
+      --line: #d0d0d0;
+      --soft: #fafafa;
+      --white: #fff;
+      --blue: #006a96;
+      --green: #3b7f11;
+      --red: #a6192e;
+      --focus: #005ea8;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+    * { box-sizing: border-box; }
+    body { margin: 0; color: var(--ink); background: var(--soft); line-height: 1.5; }
+    .app { min-height: 100vh; background: linear-gradient(180deg, rgba(140,29,64,.06), transparent 260px), var(--soft); }
+    .skip-link { position: absolute; left: 1rem; top: -5rem; z-index: 5; background: var(--gold); color: var(--ink); padding: .65rem .9rem; border: 2px solid var(--ink); }
+    .skip-link:focus { top: 1rem; }
+    header { background: var(--maroon); color: var(--white); border-bottom: 8px solid var(--gold); }
+    .wrap { width: min(1120px, calc(100% - 32px)); margin: 0 auto; }
+    .top { padding: 1.35rem 0 1.55rem; }
+    h1 { margin: 0; font-size: clamp(1.85rem, 4vw, 2.6rem); line-height: 1.1; letter-spacing: 0; }
+    .activity-title { margin: .45rem 0 0; font-size: clamp(1.2rem, 2.5vw, 1.45rem); font-weight: 400; line-height: 1.25; }
+    .header-description { margin: .65rem 0 0; max-width: 960px; font-size: 1.05rem; }
+    main { padding: 1.25rem 0 2rem; }
+    .panel { background: var(--white); border: 1px solid var(--line); border-radius: 8px; padding: 1rem; box-shadow: 0 2px 8px rgba(25,25,25,.06); }
+    .instructions { display: grid; grid-template-columns: 1.25fr .75fr; gap: 1rem; margin-bottom: 1rem; }
+    h2 { margin: 0 0 .65rem; font-size: clamp(1.25rem, 3vw, 1.7rem); line-height: 1.2; letter-spacing: 0; }
+    h3 { margin: 0 0 .45rem; font-size: 1.15rem; letter-spacing: 0; }
+    h4 { margin: .8rem 0 .3rem; font-size: 1rem; letter-spacing: 0; }
+    .metric-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: .65rem; }
+    .metric { border-left: 5px solid var(--maroon); background: #fff8df; padding: .7rem; min-height: 82px; }
+    .metric strong { display: block; font-size: 1.45rem; line-height: 1; }
+    .tabs { display: flex; flex-wrap: wrap; gap: .5rem; margin: 0 0 1rem; border-bottom: 3px solid var(--maroon); }
+    .tab { background: var(--white); color: var(--maroon); border: 2px solid var(--maroon); border-bottom: 0; border-radius: 6px 6px 0 0; margin-bottom: -3px; }
+    .tab[aria-selected="true"] { background: var(--maroon); color: var(--white); }
+    .tab.locked { opacity: .55; cursor: not-allowed; }
+    .tab-panel[hidden] { display: none; }
+    button { min-height: 44px; padding: .62rem .9rem; border: 2px solid transparent; border-radius: 6px; font: inherit; font-weight: 700; cursor: pointer; }
+    .primary { background: var(--maroon); color: var(--white); }
+    .secondary { background: var(--white); color: var(--maroon); border-color: var(--maroon); }
+    button:disabled { opacity: .55; cursor: not-allowed; }
+    button:focus-visible, input:focus-visible, textarea:focus-visible, a:focus-visible { outline: 4px solid var(--focus); outline-offset: 3px; }
+    .process-list { display: grid; gap: .6rem; margin-top: 1rem; }
+    .accordion-item { border: 1px solid var(--line); border-radius: 8px; background: var(--white); overflow: clip; }
+    .accordion-item h3 { margin: 0; font-size: 1.08rem; }
+    .accordion-trigger { width: 100%; display: flex; justify-content: space-between; align-items: center; gap: .75rem; min-height: 52px; padding: .75rem .85rem; border-left: 6px solid var(--maroon); background: var(--soft); color: var(--ink); text-align: left; }
+    .accordion-trigger[aria-expanded="true"] { background: #fff8df; border-left-color: var(--gold); }
+    .accordion-icon { color: var(--maroon); font-size: 1.35rem; }
+    .accordion-panel { padding: .9rem .85rem; }
+    .accordion-panel[hidden] { display: none; }
+    .lab-process-list { display: grid; gap: .6rem; margin-bottom: 1rem; }
+    .decision-list { display: grid; gap: 1rem; margin-top: .5rem; }
+    .decision-card { border: 1px solid var(--line); border-radius: 8px; background: var(--white); padding: 1rem; }
+    .decision-card.checked { border-left: 6px solid var(--green); }
+    .decision-meta { color: var(--muted); font-size: .9rem; font-weight: 700; }
+    .course-step-label { display: inline-flex; min-height: 28px; align-items: center; margin-bottom: .45rem; padding: .18rem .55rem; border: 1px solid #b48700; border-radius: 999px; background: var(--gold); color: var(--ink); font-size: .9rem; font-weight: 700; }
+    .case-box, .question-box { border: 1px solid var(--line); border-radius: 8px; background: var(--soft); padding: 1rem; margin: .75rem 0 1rem; }
+    fieldset { margin: 0; padding: 0; border: 0; }
+    legend { font-weight: 700; margin-bottom: .55rem; }
+    .choices { display: grid; gap: .55rem; }
+    .choice { display: flex; gap: .5rem; align-items: flex-start; min-height: 54px; padding: .7rem; border: 1px solid var(--line); border-radius: 6px; background: var(--white); }
+    .choice input { margin-top: .22rem; inline-size: 1.1rem; block-size: 1.1rem; }
+    .actions, .nav-row { display: flex; flex-wrap: wrap; gap: .65rem; align-items: center; margin: 1rem 0; }
+    .nav-row { justify-content: space-between; }
+    .feedback { min-height: 72px; border: 1px solid var(--line); border-left: 6px solid var(--blue); border-radius: 6px; background: #eef8fc; padding: .8rem; }
+    .feedback.correct { border-left-color: var(--green); background: #f2f8ed; }
+    .feedback.incorrect { border-left-color: var(--red); background: #fff4f5; }
+    label.reflection-label { display: block; margin: 1rem 0 .35rem; font-weight: 700; }
+    .reflection-note { color: var(--muted); font-weight: 700; font-style: italic; }
+    textarea { width: 100%; min-height: 92px; resize: vertical; border: 1px solid var(--line); border-radius: 6px; padding: .7rem; font: inherit; }
+    .score-line { font-size: 1.25rem; font-weight: 700; }
+    .review-list { display: grid; gap: .55rem; margin: 1rem 0; }
+    .review-item { border: 1px solid var(--line); border-left: 5px solid var(--maroon); border-radius: 6px; padding: .7rem; background: var(--soft); }
+    .review-item strong { display: block; }
+    .status { min-height: 1.5rem; font-weight: 700; }
+    @media (max-width: 850px) { .instructions { grid-template-columns: 1fr; } }
+    @media (max-width: 620px) { .wrap { width: min(100% - 20px, 1120px); } .metric-grid { grid-template-columns: 1fr; } .panel { padding: .85rem; } .tab { flex: 1 1 150px; } }
+  </style>
+</head>
+<body>
+  <div class="app">
+    <a class="skip-link" href="#main">Skip to activity</a>
+    <header>
+      <div class="wrap top">
+        <h1>LES 305 | 1.2 Steps to Analyze Ethical Dilemmas</h1>
+        <p class="activity-title">Work the Ethical Decision Process</p>
+        <p class="header-description">Practice moving from facts to stakeholders, options, evaluation, and action.</p>
+      </div>
+    </header>
+    <main id="main" class="wrap">
+      <section class="instructions" aria-labelledby="instructions-heading">
+        <div class="panel">
+          <h2 id="instructions-heading">Instructions</h2>
+          <p>Start with the Reading tab to review the six-step decision process. Then use the Case Lab tab to apply the process to a business dilemma. A lab step is complete only after you select <strong>Check this step</strong>.</p>
+          <p>Your Canvas score is based on 10 checked decisions in the Case Lab. Reflection notes are not scored.</p>
+        </div>
+        <div class="panel" aria-label="Progress summary">
+          <div class="metric-grid">
+            <div class="metric"><strong id="completeCount">0</strong><span>checked</span></div>
+            <div class="metric"><strong id="scoreCount">0</strong><span>correct</span></div>
+            <div class="metric"><strong id="scorePercent">0%</strong><span>current score</span></div>
+          </div>
+        </div>
+      </section>
+      <div class="tabs" role="tablist" aria-label="Activity sections">
+        <button id="readingTab" class="tab" type="button" role="tab" aria-selected="true" aria-controls="readingPanel">Reading</button>
+        <button id="labTab" class="tab" type="button" role="tab" aria-selected="false" aria-controls="labPanel">Case Lab</button>
+        <button id="reviewTab" class="tab locked" type="button" role="tab" aria-selected="false" aria-controls="reviewPanel" aria-disabled="true">Review & Submit</button>
+      </div>
+      <section id="readingPanel" class="tab-panel" role="tabpanel" aria-labelledby="readingTab">
+        <div class="panel">
+          <h2>Ethical Analysis Is a Process</h2>
+          <p>Ethical decision-making slows the rush to judgment. The point is to gather enough facts, identify who is affected, generate real alternatives, evaluate consequences and ethical tests, and then act with a reasoned recommendation.</p>
+          <div id="processList" class="process-list"></div>
+        </div>
+      </section>
+      <section id="labPanel" class="tab-panel" role="tabpanel" aria-labelledby="labTab" hidden>
+        <div class="panel">
+          <h2>Case Lab Process</h2>
+          <p>Open each process accordion and complete the decision or decisions inside it. The Review & Submit tab unlocks after all 10 decisions are checked.</p>
+          <div id="labProcessList" class="lab-process-list"></div>
+        </div>
+      </section>
+      <section id="reviewPanel" class="tab-panel" role="tabpanel" aria-labelledby="reviewTab" hidden>
+        <div class="panel" aria-labelledby="submitHeading">
+          <h2 id="submitHeading">Required Final Step: Submit Your Score to Canvas</h2>
+          <p class="score-line" id="finalScore"></p>
+          <p id="reviewInstructions">Complete and check all 10 Case Lab decisions to unlock Canvas submission.</p>
+          <div id="reviewList" class="review-list"></div>
+          <div class="actions">
+            <button id="downloadBtn" class="secondary" type="button">Download Take-Away Brief</button>
+            <button id="submitBtn" class="primary" type="button">Submit Score to Canvas</button>
+          </div>
+          <p id="submitStatus" class="status" role="status" aria-live="polite"></p>
+        </div>
+      </section>
+    </main>
+  </div>
+  <script>
+    const processSteps = [
+      { title: "Gather the Facts", body: "Start with what is known, what is not known, and what must be verified. Facts include dates, documents, product data, policies, legal constraints, and the credibility of sources. Do not fill gaps with assumptions.", questions: ["What do we know?", "What is missing?", "Which claims need verification?"] },
+      { title: "List Missing Information", body: "Ethical analysis should name uncertainty directly. Missing information may include technical evidence, stakeholder input, policy requirements, legal obligations, timelines, and likely harms.", questions: ["What information could change the decision?", "Who has that information?", "Can we delay action safely while gathering it?"] },
+      { title: "Identify Stakeholders and Interests", body: "Stakeholders are people or groups affected by the decision. Good analysis considers customers, employees, owners, suppliers, regulators, communities, and anyone who may bear risk or receive benefit.", questions: ["Who can be harmed?", "Who benefits?", "Whose voice is missing?"] },
+      { title: "Generate Alternative Options", body: "Avoid false either-or choices. Generate practical options before evaluating them: disclose, pause, investigate, compensate, escalate, redesign, report, recall, negotiate, or combine approaches.", questions: ["What are at least three options?", "Which option protects the most vulnerable?", "Is there a transparent middle path?"] },
+      { title: "Evaluate Options", body: "Evaluate the available options by testing their legality, effects, and ethical quality.", questions: ["Is it legal?", "Who is helped or harmed?", "Would this withstand public scrutiny?", "How will this decision affect others?", "How will this decision affect our company?", "How will this decision affect me?"] },
+      { title: "Recommend and Take Action", body: "Recommend what to do, explain why the decision is ethical, and how results will be monitored to improve future recommendations.", questions: ["What decision is the ethical choice and why?", "Who must act and who must be informed?", "How will follow-through be checked to be sure the decision is implemented?", "How will the impact of the decision be monitored to improve future decision-making?"] }
+    ];
+
+    const labSteps = [
+      { courseStep: "1. Gather the Facts", title: "Fact record", prompt: "Which fact belongs in the initial fact record?", choices: ["The company should do whatever protects the retailer contract.", "There have been three minor fires linked to the battery batch.", "Customers who charge batteries overnight are careless.", "A quiet replacement plan proves there is no serious issue."], answer: 1, feedback: "A fact record should begin with verifiable information, not blame or conclusions." },
+      { courseStep: "2. List Missing Information", title: "Information gap", prompt: "Which missing information should the team list before deciding?", choices: ["Whether the VP is usually popular with employees.", "Whether engineering can identify the affected serial numbers and level of fire risk.", "Whether competitors have ever had worse product problems.", "Whether the retailer contract would make the quarter look better."], answer: 1, feedback: "Technical scope and risk level could materially change the ethical and practical decision." },
+      { courseStep: "3. Identify Stakeholders and Interests", title: "Stakeholder map", prompt: "Which stakeholder analysis is strongest?", choices: ["Only shareholders matter because they own the company.", "Customers need safety information; employees need guidance; retailers, regulators, and owners also face consequences.", "The operations VP is the only stakeholder because the VP owns the plan.", "Stakeholders are anyone who agrees with a recall."], answer: 1, feedback: "A strong stakeholder analysis names affected groups and their concrete interests." },
+      { courseStep: "3. Identify Stakeholders and Interests", title: "Stakeholder impact", prompt: "Which impact should receive special attention?", choices: ["Customers may continue charging risky batteries without knowing the danger.", "Executives may feel embarrassed in meetings.", "The company's logo may need redesigning.", "Competitors may gossip."], answer: 0, feedback: "Ethical analysis gives priority to foreseeable safety risk and informed choice." },
+      { courseStep: "4. Generate Alternative Options", title: "Option set", prompt: "Which option set avoids a false either-or choice?", choices: ["Do nothing or shut down the company.", "Quietly replace batteries only for customers who complain.", "Pause shipments, notify affected customers, report as required, and offer targeted replacement while engineering confirms scope.", "Tell sales staff to avoid written communications."], answer: 2, feedback: "Good options can combine investigation, disclosure, harm reduction, and operational action." },
+      { courseStep: "5. Evaluate Options", title: "Legality and duties", prompt: "What is the best process move when reporting duties are unclear?", choices: ["Treat unclear law as permission to stay silent.", "Ask legal and safety experts to clarify duties while taking reasonable steps to protect customers.", "Wait until serious injuries occur.", "Let the retailer decide whether customers need to know."], answer: 1, feedback: "Uncertainty about law does not erase duties to investigate, protect, and communicate responsibly." },
+      { courseStep: "5. Evaluate Options", title: "Stakeholder consequences", prompt: "Which evaluation question best fits this case?", choices: ["Which option hides the issue longest?", "Which option best balances customer safety, truthful communication, legal duties, and business continuity?", "Which option is cheapest this week?", "Which option lets the VP avoid conflict?"], answer: 1, feedback: "Evaluation should weigh multiple ethical and practical dimensions, not only short-term cost." },
+      { courseStep: "5. Evaluate Options", title: "Ethical test", prompt: "Which test would most directly pressure-test the quiet replacement plan?", choices: ["Would we be comfortable seeing this plan reported on the front page tomorrow?", "Could we describe the battery color more vividly?", "Can we delay until the retailer contract closes?", "Would silence make the spreadsheet easier?"], answer: 0, feedback: "Publicity tests help reveal whether a decision depends on secrecy to seem acceptable." },
+      { courseStep: "6. Recommend and Take Action", title: "Recommendation", prompt: "Which recommendation is most ethically defensible?", choices: ["Quietly replace batteries only after complaints and avoid creating records.", "Notify affected customers, pause shipment of the batch, clarify reporting duties, and provide a replacement or repair path.", "Tell customer service to call fires isolated events no matter what engineering finds.", "Wait for social media attention before acting."], answer: 1, feedback: "A defensible recommendation addresses risk, communication, legal clarification, and practical remedy." },
+      { courseStep: "6. Recommend and Take Action", title: "Follow-through", prompt: "Which follow-through step best completes the process?", choices: ["Delete draft emails to avoid future questions.", "Track completion of replacements, review new data, and update customers and regulators if risk estimates change.", "Move the VP to another project and stop discussing batteries.", "Declare success once the retailer contract is signed."], answer: 1, feedback: "Taking action includes monitoring, documentation, and adjustment as facts develop." }
+    ];
+
+    const processGroups = processSteps.map((step, index) => `${index + 1}. ${step.title}`);
+    const state = { openProcess: processGroups[0], answers: Array(labSteps.length).fill(null), checked: Array(labSteps.length).fill(false), correct: Array(labSteps.length).fill(false), notes: Array(labSteps.length).fill("") };
+    let scormApi = null;
+    let scormVersion = null;
+    const els = {
+      completeCount: document.getElementById("completeCount"), scoreCount: document.getElementById("scoreCount"), scorePercent: document.getElementById("scorePercent"),
+      readingTab: document.getElementById("readingTab"), labTab: document.getElementById("labTab"), reviewTab: document.getElementById("reviewTab"), readingPanel: document.getElementById("readingPanel"), labPanel: document.getElementById("labPanel"), reviewPanel: document.getElementById("reviewPanel"),
+      processList: document.getElementById("processList"), labProcessList: document.getElementById("labProcessList"),
+      finalScore: document.getElementById("finalScore"), reviewInstructions: document.getElementById("reviewInstructions"), reviewList: document.getElementById("reviewList"), downloadBtn: document.getElementById("downloadBtn"), submitBtn: document.getElementById("submitBtn"), submitStatus: document.getElementById("submitStatus")
+    };
+    function findScormApi(win) {
+      let depth = 0, current = win;
+      while (current && depth < 8) {
+        if (current.API_1484_11) return { api: current.API_1484_11, version: "2004" };
+        if (current.API) return { api: current.API, version: "1.2" };
+        if (current.parent && current.parent !== current) current = current.parent; else break;
+        depth += 1;
+      }
+      if (win.opener) return findScormApi(win.opener);
+      return { api: null, version: null };
+    }
+    function scormInitialize() {
+      const found = findScormApi(window); scormApi = found.api; scormVersion = found.version; if (!scormApi) return;
+      if (scormVersion === "2004") { scormApi.Initialize(""); scormApi.SetValue("cmi.completion_status", "incomplete"); scormApi.SetValue("cmi.success_status", "unknown"); scormApi.Commit(""); }
+      else { scormApi.LMSInitialize(""); scormApi.LMSSetValue("cmi.core.lesson_status", "incomplete"); scormApi.LMSCommit(""); }
+    }
+    function scormSubmit(score) {
+      if (!scormApi) return false;
+      if (scormVersion === "2004") { scormApi.SetValue("cmi.score.min", "0"); scormApi.SetValue("cmi.score.max", "100"); scormApi.SetValue("cmi.score.raw", String(score)); scormApi.SetValue("cmi.score.scaled", String(score / 100)); scormApi.SetValue("cmi.completion_status", "completed"); scormApi.SetValue("cmi.success_status", score >= 70 ? "passed" : "failed"); scormApi.Commit(""); scormApi.Terminate(""); }
+      else { scormApi.LMSSetValue("cmi.core.score.min", "0"); scormApi.LMSSetValue("cmi.core.score.max", "100"); scormApi.LMSSetValue("cmi.core.score.raw", String(score)); scormApi.LMSSetValue("cmi.core.lesson_status", score >= 70 ? "passed" : "completed"); scormApi.LMSCommit(""); scormApi.LMSFinish(""); }
+      return true;
+    }
+    function scoreData() { const complete = state.checked.filter(Boolean).length; const correct = state.correct.filter(Boolean).length; return { complete, correct, percent: Math.round((correct / labSteps.length) * 100) }; }
+    function isComplete() { return state.checked.every(Boolean); }
+    function setTab(name) {
+      if (name === "review" && !isComplete()) {
+        els.submitStatus.textContent = "Complete and check every Case Lab decision before opening Review & Submit.";
+        return;
+      }
+      const reading = name === "reading";
+      const lab = name === "lab";
+      const review = name === "review";
+      els.readingTab.setAttribute("aria-selected", String(reading));
+      els.labTab.setAttribute("aria-selected", String(lab));
+      els.reviewTab.setAttribute("aria-selected", String(review));
+      els.readingPanel.hidden = !reading;
+      els.labPanel.hidden = !lab;
+      els.reviewPanel.hidden = !review;
+      (reading ? els.readingTab : review ? els.reviewTab : els.labTab).focus();
+    }
+    function renderReading() {
+      els.processList.innerHTML = "";
+      processSteps.forEach((step, index) => {
+        const article = document.createElement("article"); article.className = "accordion-item";
+        const h = document.createElement("h3"); const button = document.createElement("button"); const panelId = `process-panel-${index}`;
+        button.type = "button"; button.className = "accordion-trigger"; button.setAttribute("aria-expanded", "false"); button.setAttribute("aria-controls", panelId);
+        const title = document.createElement("span"); title.textContent = `${index + 1}. ${step.title}`;
+        const icon = document.createElement("span"); icon.className = "accordion-icon"; icon.setAttribute("aria-hidden", "true"); icon.textContent = "+";
+        button.append(title, icon); h.appendChild(button);
+        const panel = document.createElement("div"); panel.className = "accordion-panel"; panel.id = panelId; panel.hidden = true;
+        const body = document.createElement("p"); body.textContent = step.body;
+        const qh = document.createElement("h4"); qh.textContent = "Questions to ask";
+        const list = document.createElement("ul"); step.questions.forEach((q) => { const li = document.createElement("li"); li.textContent = q; list.appendChild(li); });
+        panel.append(body, qh, list);
+        button.addEventListener("click", () => { const expanded = button.getAttribute("aria-expanded") === "true"; button.setAttribute("aria-expanded", String(!expanded)); panel.hidden = expanded; icon.textContent = expanded ? "+" : "-"; });
+        article.append(h, panel); els.processList.appendChild(article);
+      });
+    }
+    function renderLabAccordions() {
+      els.labProcessList.innerHTML = "";
+      processGroups.forEach((courseStep, groupIndex) => {
+        const article = document.createElement("article");
+        article.className = "accordion-item";
+        const heading = document.createElement("h3");
+        const trigger = document.createElement("button");
+        const panelId = `lab-process-panel-${groupIndex}`;
+        trigger.type = "button";
+        trigger.className = "accordion-trigger";
+        trigger.setAttribute("aria-controls", panelId);
+        trigger.setAttribute("aria-expanded", String(courseStep === state.openProcess));
+        const completedInGroup = labSteps
+          .map((step, index) => ({ step, index }))
+          .filter((item) => item.step.courseStep === courseStep && state.checked[item.index]).length;
+        const totalInGroup = labSteps.filter((step) => step.courseStep === courseStep).length;
+        const title = document.createElement("span");
+        title.textContent = `${courseStep} (${completedInGroup} of ${totalInGroup} checked)`;
+        const icon = document.createElement("span");
+        icon.className = "accordion-icon";
+        icon.setAttribute("aria-hidden", "true");
+        icon.textContent = courseStep === state.openProcess ? "-" : "+";
+        trigger.append(title, icon);
+        heading.appendChild(trigger);
+        const panel = document.createElement("div");
+        panel.className = "accordion-panel";
+        panel.id = panelId;
+        panel.hidden = courseStep !== state.openProcess;
+        const caseBox = document.createElement("div");
+        caseBox.className = "case-box";
+        caseBox.innerHTML = "<h4>Case File: The Quiet Recall</h4><p>A regional e-bike company learns that a battery batch can overheat during charging. There have been three minor fires and no serious injuries. A full recall would be expensive and could threaten a pending retailer contract. The operations VP suggests quietly replacing batteries only when customers complain. The legal team says reporting duties are unclear until engineering finishes more tests.</p>";
+        const decisionList = document.createElement("div");
+        decisionList.className = "decision-list";
+        labSteps.forEach((step, index) => {
+          if (step.courseStep !== courseStep) return;
+          const card = document.createElement("section");
+          card.className = "decision-card" + (state.checked[index] ? " checked" : "");
+          card.setAttribute("aria-labelledby", `decision-title-${index}`);
+          const title = document.createElement("h4");
+          title.id = `decision-title-${index}`;
+          title.textContent = step.title;
+          const meta = document.createElement("p");
+          meta.className = "decision-meta";
+          meta.textContent = `Decision ${index + 1}`;
+          const question = document.createElement("div");
+          question.className = "question-box";
+          question.textContent = step.prompt;
+          const fieldset = document.createElement("fieldset");
+          const legend = document.createElement("legend");
+          legend.textContent = "Select the best process move.";
+          const choices = document.createElement("div");
+          choices.className = "choices";
+          step.choices.forEach((choice, choiceIndex) => {
+            const label = document.createElement("label");
+            label.className = "choice";
+            const input = document.createElement("input");
+            input.type = "radio";
+            input.name = `choice-${index}`;
+            input.value = String(choiceIndex);
+            input.checked = state.answers[index] === choiceIndex;
+            input.addEventListener("change", () => {
+              state.answers[index] = choiceIndex;
+              if (!state.checked[index]) {
+                const feedback = document.getElementById(`feedback-${index}`);
+                feedback.className = "feedback";
+                feedback.textContent = "Ready to check. Select Check this step when you are satisfied.";
+              }
+            });
+            label.append(input, document.createTextNode(choice));
+            choices.appendChild(label);
+          });
+          fieldset.append(legend, choices);
+          const actions = document.createElement("div");
+          actions.className = "actions";
+          const check = document.createElement("button");
+          check.type = "button";
+          check.className = "primary";
+          check.textContent = "Check this step";
+          check.addEventListener("click", () => checkDecision(index));
+          const reset = document.createElement("button");
+          reset.type = "button";
+          reset.className = "secondary";
+          reset.textContent = "Reset this step";
+          reset.addEventListener("click", () => resetDecision(index));
+          actions.append(check, reset);
+          const feedback = document.createElement("div");
+          const ok = state.correct[index];
+          feedback.id = `feedback-${index}`;
+          feedback.className = state.checked[index] ? `feedback ${ok ? "correct" : "incorrect"}` : "feedback";
+          feedback.setAttribute("role", "status");
+          feedback.setAttribute("aria-live", "polite");
+          feedback.textContent = state.checked[index]
+            ? (ok ? `Good process move. ${step.feedback}` : `Not quite. ${step.feedback}`)
+            : "Choose the best process move, then check this step.";
+          const reflectionLabel = document.createElement("label");
+          reflectionLabel.className = "reflection-label";
+          reflectionLabel.setAttribute("for", `reflection-${index}`);
+          reflectionLabel.innerHTML = 'Reflection note <span class="reflection-note">not scored</span>';
+          const reflection = document.createElement("textarea");
+          reflection.id = `reflection-${index}`;
+          reflection.placeholder = "Optional: note how this process step changes your view of the case.";
+          reflection.value = state.notes[index];
+          reflection.addEventListener("input", () => { state.notes[index] = reflection.value; });
+          card.append(meta, title, question, fieldset, actions, feedback, reflectionLabel, reflection);
+          decisionList.appendChild(card);
+        });
+        panel.append(caseBox, decisionList);
+        trigger.addEventListener("click", () => {
+          const expanded = trigger.getAttribute("aria-expanded") === "true";
+          state.openProcess = expanded ? "" : courseStep;
+          render();
+        });
+        article.append(heading, panel);
+        els.labProcessList.appendChild(article);
+      });
+    }
+    function checkDecision(index) {
+      const selected = state.answers[index];
+      if (selected === null) {
+        const feedback = document.getElementById(`feedback-${index}`);
+        feedback.className = "feedback incorrect";
+        feedback.textContent = "Select an option before checking this step.";
+        return;
+      }
+      state.checked[index] = true;
+      state.correct[index] = selected === labSteps[index].answer;
+      render();
+    }
+    function resetDecision(index) {
+      state.answers[index] = null;
+      state.checked[index] = false;
+      state.correct[index] = false;
+      render();
+    }
+    function renderProgress() {
+      const score = scoreData();
+      els.completeCount.textContent = String(score.complete);
+      els.scoreCount.textContent = String(score.correct);
+      els.scorePercent.textContent = `${score.percent}%`;
+      const unlocked = score.complete === labSteps.length;
+      els.reviewTab.classList.toggle("locked", !unlocked);
+      els.reviewTab.setAttribute("aria-disabled", String(!unlocked));
+      els.submitBtn.disabled = !unlocked;
+      els.downloadBtn.disabled = !unlocked;
+      els.reviewInstructions.textContent = unlocked
+        ? "All 10 Case Lab decisions have been checked. Review your results, download your take-away brief if useful, then submit your score to Canvas."
+        : "Complete and check all 10 Case Lab decisions to unlock Canvas submission.";
+      els.finalScore.textContent = `Current Canvas score: ${score.percent}% (${score.correct} of ${labSteps.length} correct).`;
+      renderReview();
+    }
+    function renderReview() {
+      els.reviewList.innerHTML = "";
+      labSteps.forEach((step, index) => {
+        const item = document.createElement("div");
+        item.className = "review-item";
+        const selected = state.answers[index] === null ? "No answer selected" : step.choices[state.answers[index]];
+        const result = state.checked[index] ? (state.correct[index] ? "Correct" : "Review") : "Not checked";
+        item.innerHTML = `<strong>${step.courseStep}: ${step.title}</strong><span>Result: ${result}</span><br><span>Your choice: ${selected}</span>`;
+        els.reviewList.appendChild(item);
+      });
+    }
+    function render() {
+      renderLabAccordions(); renderProgress();
+    }
+    els.readingTab.addEventListener("click", () => setTab("reading")); els.labTab.addEventListener("click", () => setTab("lab")); els.reviewTab.addEventListener("click", () => setTab("review"));
+    els.readingTab.addEventListener("keydown", (e) => { if (e.key === "ArrowRight") setTab("lab"); });
+    els.labTab.addEventListener("keydown", (e) => { if (e.key === "ArrowLeft") setTab("reading"); if (e.key === "ArrowRight") setTab("review"); });
+    els.reviewTab.addEventListener("keydown", (e) => { if (e.key === "ArrowLeft") setTab("lab"); });
+    els.downloadBtn.addEventListener("click", () => {
+      const score = scoreData(); const lines = ["LES 305 1.2 Ethical Decision Process Take-Away Brief", `Score: ${score.percent}% (${score.correct} of ${labSteps.length} correct)`, "", "Case: The Quiet Recall", ""];
+      labSteps.forEach((step, index) => { lines.push(step.title); lines.push(`Your choice: ${state.answers[index] === null ? "No answer selected" : step.choices[state.answers[index]]}`); lines.push(`Result: ${state.checked[index] ? (state.correct[index] ? "Correct" : "Review") : "Not checked"}`); lines.push(`Reflection note: ${state.notes[index] || "None"}`); lines.push(""); });
+      const blob = new Blob([lines.join("\n")], { type: "text/plain" }); const url = URL.createObjectURL(blob); const link = document.createElement("a"); link.href = url; link.download = "les305-ethical-decision-process-brief.txt"; document.body.appendChild(link); link.click(); link.remove(); URL.revokeObjectURL(url);
+    });
+    els.submitBtn.addEventListener("click", () => { const score = scoreData(); if (score.complete < labSteps.length) { els.submitStatus.textContent = "Complete and check every lab step before submitting."; return; } const sent = scormSubmit(score.percent); els.submitStatus.textContent = sent ? "Your score and completion status were sent to Canvas." : "Canvas submission could not be confirmed in this local preview. In Canvas, this button sends your score and completion status."; });
+    window.addEventListener("beforeunload", () => { if (scormApi && scormVersion === "1.2") scormApi.LMSCommit(""); if (scormApi && scormVersion === "2004") scormApi.Commit(""); });
+    scormInitialize(); renderReading(); render();
+  </script>
+</body>
+</html>
