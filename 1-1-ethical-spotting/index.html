@@ -1,0 +1,1254 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>LES 305 1.1 Ethical Issue Spotting</title>
+  <style>
+    :root {
+      --asu-maroon: #8c1d40;
+      --asu-gold: #ffc627;
+      --ink: #191919;
+      --muted: #484848;
+      --line: #d0d0d0;
+      --soft: #fafafa;
+      --white: #ffffff;
+      --blue: #006a96;
+      --green: #3b7f11;
+      --red: #a6192e;
+      --focus: #005ea8;
+      font-family: Arial, Helvetica, sans-serif;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      background: var(--soft);
+      color: var(--ink);
+      line-height: 1.5;
+    }
+
+    .les305-app {
+      min-height: 100vh;
+      background:
+        linear-gradient(180deg, rgba(140, 29, 64, 0.06), rgba(255, 255, 255, 0) 260px),
+        var(--soft);
+    }
+
+    .skip-link {
+      position: absolute;
+      left: 1rem;
+      top: -5rem;
+      z-index: 20;
+      background: var(--asu-gold);
+      color: var(--ink);
+      padding: .65rem .9rem;
+      border: 2px solid var(--ink);
+    }
+
+    .skip-link:focus { top: 1rem; }
+
+    header {
+      background: var(--asu-maroon);
+      color: var(--white);
+      border-bottom: 8px solid var(--asu-gold);
+    }
+
+    .wrap {
+      width: min(1120px, calc(100% - 32px));
+      margin: 0 auto;
+    }
+
+    .top {
+      padding: 1.35rem 0 1.55rem;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(1.85rem, 4vw, 2.6rem);
+      line-height: 1.1;
+      letter-spacing: 0;
+    }
+
+    .activity-title {
+      margin: .45rem 0 0;
+      font-size: clamp(1.2rem, 2.5vw, 1.45rem);
+      font-weight: 400;
+      line-height: 1.25;
+    }
+
+    .header-description {
+      max-width: 960px;
+      margin: .65rem 0 0;
+      font-size: 1.05rem;
+    }
+
+    main {
+      padding: 1.25rem 0 2rem;
+    }
+
+    .panel {
+      background: var(--white);
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 1rem;
+      box-shadow: 0 2px 8px rgba(25, 25, 25, .06);
+    }
+
+    .instructions {
+      display: grid;
+      grid-template-columns: 1.3fr .7fr;
+      gap: 1rem;
+      align-items: stretch;
+      margin-bottom: 1rem;
+    }
+
+    h2 {
+      margin: 0 0 .65rem;
+      font-size: clamp(1.25rem, 3vw, 1.7rem);
+      line-height: 1.2;
+      letter-spacing: 0;
+    }
+
+    h3 {
+      margin: 0 0 .45rem;
+      font-size: 1.15rem;
+      letter-spacing: 0;
+    }
+
+    .metric-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: .65rem;
+    }
+
+    .metric {
+      border-left: 5px solid var(--asu-maroon);
+      background: #fff8df;
+      padding: .7rem;
+      min-height: 82px;
+    }
+
+    .metric strong {
+      display: block;
+      font-size: 1.45rem;
+      line-height: 1;
+    }
+
+    .tabs {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .5rem;
+      margin: 0 0 1rem;
+      border-bottom: 3px solid var(--asu-maroon);
+    }
+
+    .tab {
+      background: var(--white);
+      color: var(--asu-maroon);
+      border: 2px solid var(--asu-maroon);
+      border-bottom: 0;
+      border-radius: 6px 6px 0 0;
+      margin-bottom: -3px;
+    }
+
+    .tab[aria-selected="true"] {
+      background: var(--asu-maroon);
+      color: var(--white);
+    }
+
+    .tab-panel[hidden] {
+      display: none;
+    }
+
+    .spotting-steps {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: .65rem;
+      margin: .85rem 0 0;
+    }
+
+    .category-heading {
+      margin-top: 1.6rem;
+    }
+
+    .step {
+      border-left: 5px solid var(--asu-gold);
+      background: #fff8df;
+      padding: .75rem;
+    }
+
+    .step strong {
+      display: block;
+    }
+
+    .reading-list {
+      display: grid;
+      gap: .6rem;
+      margin-top: 1rem;
+    }
+
+    .accordion-item {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      overflow: clip;
+      padding: 1rem;
+      background: var(--white);
+    }
+
+    .accordion-item h3 {
+      margin: 0;
+      font-size: 1.1rem;
+    }
+
+    .accordion-trigger {
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: .75rem;
+      min-height: 52px;
+      padding: .75rem .85rem;
+      border: 1px solid transparent;
+      border-left: 6px solid var(--asu-maroon);
+      border-radius: 6px;
+      background: var(--soft);
+      color: var(--ink);
+      text-align: left;
+      font-weight: 700;
+    }
+
+    .accordion-trigger[aria-expanded="true"] {
+      background: #fff8df;
+      border-left-color: var(--asu-gold);
+    }
+
+    .accordion-icon {
+      flex: 0 0 auto;
+      color: var(--asu-maroon);
+      font-size: 1.35rem;
+      line-height: 1;
+    }
+
+    .accordion-panel {
+      padding: .9rem .85rem .3rem;
+    }
+
+    .accordion-panel[hidden] {
+      display: none;
+    }
+
+    .accordion-panel h4 {
+      margin: .8rem 0 .25rem;
+      font-size: 1rem;
+      letter-spacing: 0;
+    }
+
+    .reading-number {
+      color: var(--asu-maroon);
+      font-weight: 700;
+      white-space: nowrap;
+    }
+
+    .example-list {
+      margin: .65rem 0 0;
+      padding-left: 1.25rem;
+    }
+
+    .example-list li + li {
+      margin-top: .35rem;
+    }
+
+    .layout {
+      display: grid;
+      grid-template-columns: 280px 1fr;
+      gap: 1rem;
+      align-items: start;
+    }
+
+    .category-list {
+      display: grid;
+      gap: .45rem;
+    }
+
+    .category-pill {
+      border: 1px solid var(--line);
+      border-left: 5px solid transparent;
+      background: var(--white);
+      color: var(--ink);
+      text-align: left;
+      padding: .6rem .7rem;
+      border-radius: 6px;
+      font: inherit;
+      cursor: pointer;
+      min-height: 44px;
+    }
+
+    .category-pill[aria-current="true"] {
+      border-left-color: var(--asu-gold);
+      background: #fff8df;
+      font-weight: 700;
+    }
+
+    .category-pill.complete::after {
+      content: "Checked";
+      display: block;
+      color: var(--green);
+      font-size: .82rem;
+      font-weight: 700;
+      margin-top: .1rem;
+    }
+
+    .activity-panel {
+      min-height: 640px;
+    }
+
+    .scenario-meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .55rem;
+      align-items: center;
+      margin-bottom: .75rem;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      min-height: 28px;
+      padding: .18rem .55rem;
+      border-radius: 999px;
+      background: #f2f2f2;
+      border: 1px solid var(--line);
+      color: var(--ink);
+      font-size: .9rem;
+      font-weight: 700;
+    }
+
+    .badge.gold {
+      background: var(--asu-gold);
+      border-color: #b48700;
+    }
+
+    .scenario {
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      padding: 1rem;
+      background: var(--soft);
+      margin: .75rem 0 1rem;
+    }
+
+    .scenario p {
+      margin: 0;
+      font-size: 1.1rem;
+    }
+
+    fieldset {
+      border: 0;
+      padding: 0;
+      margin: 0;
+    }
+
+    legend {
+      font-weight: 700;
+      margin-bottom: .55rem;
+    }
+
+    .choices {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: .55rem;
+      margin-bottom: 1rem;
+    }
+
+    .choice {
+      display: flex;
+      gap: .5rem;
+      align-items: flex-start;
+      padding: .7rem;
+      min-height: 58px;
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      background: var(--white);
+    }
+
+    .choice input {
+      margin-top: .22rem;
+      inline-size: 1.1rem;
+      block-size: 1.1rem;
+    }
+
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: .65rem;
+      align-items: center;
+      margin: 1rem 0;
+    }
+
+    button {
+      font: inherit;
+      border-radius: 6px;
+      border: 2px solid transparent;
+      min-height: 44px;
+      padding: .62rem .9rem;
+      cursor: pointer;
+      font-weight: 700;
+    }
+
+    .primary {
+      background: var(--asu-maroon);
+      color: var(--white);
+    }
+
+    .secondary {
+      background: var(--white);
+      color: var(--asu-maroon);
+      border-color: var(--asu-maroon);
+    }
+
+    .primary:disabled,
+    .secondary:disabled {
+      opacity: .55;
+      cursor: not-allowed;
+    }
+
+    button:focus-visible,
+    a:focus-visible,
+    input:focus-visible,
+    textarea:focus-visible,
+    .category-pill:focus-visible {
+      outline: 4px solid var(--focus);
+      outline-offset: 3px;
+    }
+
+    .feedback {
+      border: 1px solid var(--line);
+      border-left: 6px solid var(--blue);
+      background: #eef8fc;
+      padding: .8rem;
+      border-radius: 6px;
+      min-height: 72px;
+    }
+
+    .feedback.correct { border-left-color: var(--green); background: #f2f8ed; }
+    .feedback.incorrect { border-left-color: var(--red); background: #fff4f5; }
+
+    label.reflection-label {
+      display: block;
+      font-weight: 700;
+      margin: 1rem 0 .35rem;
+    }
+
+    .reflection-note {
+      font-weight: 700;
+      font-style: italic;
+      color: var(--muted);
+    }
+
+    textarea {
+      width: 100%;
+      min-height: 94px;
+      resize: vertical;
+      border: 1px solid var(--line);
+      border-radius: 6px;
+      padding: .7rem;
+      font: inherit;
+    }
+
+    .nav-row {
+      display: flex;
+      justify-content: space-between;
+      gap: .75rem;
+      margin-top: 1rem;
+    }
+
+    .submit-panel {
+      margin-top: 1rem;
+      display: none;
+      border: 3px solid var(--asu-maroon);
+    }
+
+    .submit-panel.unlocked {
+      display: block;
+    }
+
+    .score-line {
+      font-size: 1.25rem;
+      font-weight: 700;
+    }
+
+    .status {
+      min-height: 1.5rem;
+      font-weight: 700;
+    }
+
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
+
+    @media (max-width: 850px) {
+      .instructions,
+      .layout,
+      .spotting-steps,
+      .spotting-steps {
+        grid-template-columns: 1fr;
+      }
+
+      .category-list {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .activity-panel {
+        min-height: auto;
+      }
+    }
+
+    @media (max-width: 620px) {
+      .wrap {
+        width: min(100% - 20px, 1120px);
+      }
+
+      .metric-grid,
+      .choices,
+      .category-list {
+        grid-template-columns: 1fr;
+      }
+
+      .top {
+        padding: 1rem 0 1.2rem;
+      }
+
+      .panel {
+        padding: .85rem;
+      }
+
+      .tab {
+        flex: 1 1 150px;
+      }
+    }
+
+    @media (prefers-reduced-motion: no-preference) {
+      .category-pill,
+      button {
+        transition: background-color .15s ease, border-color .15s ease, transform .15s ease;
+      }
+
+      button:not(:disabled):hover {
+        transform: translateY(-1px);
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="les305-app">
+    <a class="skip-link" href="#main">Skip to activity</a>
+    <header>
+      <div class="wrap top">
+        <h1>LES 305 | 1.1 Ethical Issue-Spotting</h1>
+        <p class="activity-title">Spot the Ethical Issue</p>
+        <p class="header-description">Practice recognizing when an ethical problem exists and identifying the category of dilemma it raises.</p>
+      </div>
+    </header>
+
+    <main id="main" class="wrap">
+      <section class="instructions" aria-labelledby="instructions-heading">
+        <div class="panel">
+          <h2 id="instructions-heading">Instructions</h2>
+          <p>Start with the Reading tab to review the 12 categories of ethical dilemmas. Then use the Exercises tab to read each scenario, choose the ethical dilemma category that best fits, and select <strong>Check this example</strong>. An example is not complete until it has been checked.</p>
+          <p>Your Canvas score is based on 12 checked classifications. Optional reflection notes are saved only to your take-away brief and are not scored.</p>
+        </div>
+        <div class="panel" aria-label="Progress summary">
+          <div class="metric-grid">
+            <div class="metric"><strong id="completeCount">0</strong><span>checked</span></div>
+            <div class="metric"><strong id="scoreCount">0</strong><span>correct</span></div>
+            <div class="metric"><strong id="scorePercent">0%</strong><span>current score</span></div>
+          </div>
+        </div>
+      </section>
+
+      <div class="tabs" role="tablist" aria-label="Activity sections">
+        <button id="readingTab" class="tab" type="button" role="tab" aria-selected="true" aria-controls="readingPanel">Reading</button>
+        <button id="exercisesTab" class="tab" type="button" role="tab" aria-selected="false" aria-controls="exercisesPanel">Exercises</button>
+      </div>
+
+      <section id="readingPanel" class="tab-panel" role="tabpanel" aria-labelledby="readingTab">
+        <div class="panel">
+          <h2>What Issue-Spotting Means</h2>
+          <p>Ethical issue-spotting is the first step in ethical analysis. Before deciding what should happen, recognize and name the ethical problem in the facts.</p>
+          <div class="spotting-steps" aria-label="Issue spotting process">
+            <div class="step"><strong>1. Notice the pressure point.</strong><span>Look for facts involving honesty, loyalty, harm, secrecy, unfairness, rule-breaking, or abuse of power.</span></div>
+            <div class="step"><strong>2. Name the issue.</strong><span>Match the facts to the category that best explains why the situation is ethically troubling.</span></div>
+            <div class="step"><strong>3. Separate issue from solution.</strong><span>Issue-spotting does not yet decide what to do. It tells you what kind of ethical problem needs analysis.</span></div>
+          </div>
+          <h2 class="category-heading">12 Categories of Ethical Dilemmas</h2>
+          <div id="readingList" class="reading-list"></div>
+        </div>
+      </section>
+
+      <section id="exercisesPanel" class="layout tab-panel" role="tabpanel" aria-labelledby="exercisesTab" aria-label="Ethical issue spotting exercise" hidden>
+        <nav class="panel" aria-label="Examples">
+          <h2>Examples</h2>
+          <div id="categoryList" class="category-list"></div>
+        </nav>
+
+        <article class="panel activity-panel" aria-labelledby="scenarioTitle">
+          <div class="scenario-meta">
+            <span id="scenarioNumber" class="badge gold"></span>
+            <span id="completionBadge" class="badge">Not checked</span>
+          </div>
+          <h2 id="scenarioTitle"></h2>
+          <div class="scenario">
+            <p id="scenarioText"></p>
+          </div>
+
+          <fieldset>
+            <legend>Which category best identifies the ethical issue?</legend>
+            <div id="choices" class="choices"></div>
+          </fieldset>
+
+          <div class="actions">
+            <button id="checkBtn" class="primary" type="button">Check this example</button>
+            <button id="resetBtn" class="secondary" type="button">Reset this example</button>
+          </div>
+
+          <div id="feedback" class="feedback" role="status" aria-live="polite">Choose a category, then check your answer.</div>
+
+          <label for="reflection" class="reflection-label">Reflection note <span class="reflection-note">not scored</span></label>
+          <textarea id="reflection" placeholder="Optional: note the words or facts that helped you identify the ethical issue."></textarea>
+
+          <div class="nav-row">
+            <button id="prevBtn" class="secondary" type="button">Previous</button>
+            <button id="nextBtn" class="secondary" type="button">Next</button>
+          </div>
+        </article>
+      </section>
+
+      <section id="submitPanel" class="panel submit-panel" aria-labelledby="submitHeading">
+        <h2 id="submitHeading">Required Final Step: Submit Your Score to Canvas</h2>
+        <p class="score-line" id="finalScore"></p>
+        <p>All 12 classifications have been checked. Select the button below to send your score and completion status to Canvas.</p>
+        <div class="actions">
+          <button id="downloadBtn" class="secondary" type="button">Download Take-Away Brief</button>
+          <button id="submitBtn" class="primary" type="button">Submit Score to Canvas</button>
+        </div>
+        <p id="submitStatus" class="status" role="status" aria-live="polite"></p>
+      </section>
+    </main>
+  </div>
+
+  <script>
+    const categories = [
+      "Taking Things That Don't Belong to You",
+      "Saying Things That Are Not True",
+      "Giving or Allowing False Impressions",
+      "Conflict of Interest",
+      "Hiding or Divulging Information",
+      "Taking Unfair Advantage",
+      "Committing Acts of Personal Decadence",
+      "Perpetrating Interpersonal Abuse",
+      "Permitting Organizational Abuse",
+      "Violating Rules",
+      "Condoning Unethical Actions",
+      "Balancing Ethical Dilemmas"
+    ];
+
+    const scenarioPools = [
+      {
+        category: categories[0],
+        feedback: "This is taking something that does not belong to the actor. Property, money, confidential information, and business resources can all be taken.",
+        scenarios: [
+          { title: "Trade Secret Shortcut", text: "A driverless car startup hires an engineer from a rival company and uses files the engineer brought from the prior employer to install similar technology in its own vehicles.", hint: "Look closely at what changed hands. The issue is less about competition generally and more about whether the startup had permission to use another company's confidential files." },
+          { title: "Copy Room Favor", text: "An employee prints 600 flyers for a side business on the employer's color printer and charges the toner and paper to the department budget.", hint: "Focus on the office resources being used and who authorized that use." },
+          { title: "Padded Mileage", text: "A consultant drives 84 miles for a client visit but submits 140 miles on the reimbursement form because no one usually checks the exact route.", hint: "Follow the money and the reimbursement claim. Ask whether the employee is claiming value that was not actually spent." },
+          { title: "Prototype Photos", text: "A product manager secretly photographs a competitor's unreleased prototype at a closed vendor demonstration and shares the images with her design team.", hint: "The important fact is not simply curiosity. Ask whether confidential competitive information was obtained and used without permission." },
+          { title: "Borrowed Software Seat", text: "A manager installs a licensed analytics tool on extra laptops even though the company paid for only one user license.", hint: "Think about whether the organization is using something beyond the rights it purchased." }
+        ]
+      },
+      {
+        category: categories[1],
+        feedback: "This is a false statement problem. The ethical issue turns on whether a person or organization says something untrue or unsupported as fact.",
+        scenarios: [
+          { title: "Impossible Product Claim", text: "A health technology company tells investors and customers that its device can run hundreds of complex medical tests from a single drop of blood, even though internal testing shows it cannot.", hint: "Focus on the company's statement and the evidence it already has. Ask whether the claim is accurate when made." },
+          { title: "Resume Upgrade", text: "An applicant lists a bachelor's degree on a job application even though she completed only three years of college.", hint: "Look at the factual claim in the application and whether it matches the applicant's actual credentials." },
+          { title: "Insurance Omission", text: "A driver answers no when an insurance form asks whether he has had a moving violation in the last three years, even though he received a speeding ticket eight months ago.", hint: "The key fact is the direct answer to a direct question." },
+          { title: "Inflated Revenue Deck", text: "A founder tells potential investors the company has $2 million in signed contracts when most of that amount is only verbal interest from prospects.", hint: "Compare the words used with the actual status of the deals." },
+          { title: "Certified Supplier", text: "A purchasing website marks a vendor as safety certified, but the vendor's certification expired last year and has not been renewed.", hint: "Ask whether the label communicates a present fact that is no longer true." }
+        ]
+      },
+      {
+        category: categories[2],
+        feedback: "This is a misleading-impression problem. The ethical issue is the false belief created by the overall message or conduct.",
+        scenarios: [
+          { title: "Official-Looking Mailer", text: "A private company sends subscription offers that look like IRS notices. The fine print says it is an advertisement, but the design is meant to make recipients think the government sent it.", hint: "Do not stop at the fine print. Think about the overall impression the mailer is designed to create." },
+          { title: "Recorded Applause", text: "A keynote speaker uses recorded audience applause during a livestream so viewers will think the room is full and enthusiastic.", hint: "Ask what viewers are led to believe, even if no one directly says the applause is live." },
+          { title: "Defect Blame", text: "A software company tells a customer to try a different browser, allowing the customer to believe the problem is user error even though engineers know it is a product defect.", hint: "Focus on what the company lets the customer believe." },
+          { title: "Limited-Time Timer", text: "An online course vendor displays a countdown clock showing an offer expires in ten minutes, but the same discount restarts for every visitor.", hint: "Look at the impression created by the timer, not just the price." },
+          { title: "Almost Independent Review", text: "A product page features a glowing quote from an 'independent reviewer' without mentioning the reviewer is paid by the company for every sale.", hint: "Ask what relationship or context is missing and what impression remains without it." }
+        ]
+      },
+      {
+        category: categories[3],
+        feedback: "This is a loyalty and judgment problem. The ethical issue is the pull between a duty owed and a personal interest or benefit.",
+        scenarios: [
+          { title: "Vendor Travel", text: "A county commissioner accepts an all-expenses-paid trip from a construction company while that company is bidding on a county contract the commissioner will help award.", hint: "Identify the duty first. Then ask whether the personal benefit could affect independent judgment or its appearance." },
+          { title: "Family Vendor", text: "A procurement director recommends a catering company for a university contract without disclosing that the owner is his sister.", hint: "Look for the personal relationship sitting inside an official recommendation." },
+          { title: "Board Seat Bonus", text: "A CFO recommends that the company acquire a startup while privately negotiating for a paid board seat with that startup after the deal closes.", hint: "Ask whether the executive's future personal benefit could pull against the company's interests." },
+          { title: "Dual Representation", text: "A lawyer agrees to represent both business partners in a breakup negotiation even though one wants to sell and the other wants to keep the company.", hint: "Identify whether one professional can loyally serve clients whose goals diverge." },
+          { title: "Influencer Investment", text: "A manager praises a supplier in an internal ranking while quietly holding stock options in that supplier.", hint: "The issue is not whether the supplier is good. Look for personal financial interest behind the recommendation." }
+        ]
+      },
+      {
+        category: categories[4],
+        feedback: "This is an information problem. The ethical issue involves wrongly withholding important information or wrongly revealing protected information.",
+        scenarios: [
+          { title: "Quiet Safety Data", text: "A pharmaceutical company receives study results showing serious risks from a new drug but keeps marketing the drug without disclosing the findings to regulators or patients.", hint: "Ask who needs the study results in order to make informed decisions." },
+          { title: "Customer Data Sale", text: "A fitness app sells location and health data to advertisers without telling users or asking permission.", hint: "Focus on personal information and whether the people affected know how it is being used." },
+          { title: "Non-Public Customer List", text: "An engineer starts a new job and brings her old employer's non-public customer list to the new company.", hint: "Focus on the information being carried from one employer to another and whether the former employer authorized its disclosure." },
+          { title: "Confidential Bid Disclosure", text: "A purchasing employee emails one vendor a competitor's confidential bid so the vendor can submit a slightly lower price.", hint: "Ask whose protected information is being revealed, who receives it, and whether that disclosure was authorized." },
+          { title: "Unreported Breach", text: "A retailer discovers that customer credit card records were exposed but waits months to notify customers because holiday sales are approaching.", hint: "Consider who needs the breach information and what happens when disclosure is delayed." }
+        ]
+      },
+      {
+        category: categories[5],
+        feedback: "This is an exploitation problem. The ethical issue is using power, knowledge, fine print, or urgency to put another party at an unfair disadvantage.",
+        scenarios: [
+          { title: "Fee Maze", text: "A lender buries costly fees in dense contract language and tells first-time borrowers they must sign the agreement as written if they want the loan today.", hint: "Look for the imbalance between the lender and the borrowers." },
+          { title: "Subscription Trap", text: "A service makes cancellation available only by phone during business hours while allowing signup with one click at any time.", hint: "Ask whether the company is using process design to make the weaker party pay more than intended." },
+          { title: "Emergency Price Spike", text: "After a storm, a repair company triples generator rental prices and requires customers to sign a no-refund contract before seeing the equipment.", hint: "Notice the urgency and the customer's limited ability to shop or negotiate." },
+          { title: "Student Privacy Terms", text: "A textbook publisher requires students using its platform to agree to a long contract with terms of service that include fine-print provisions allowing the company to access students' private information.", hint: "Look at the imbalance in bargaining power, the required platform, and the important permission buried in the fine print." },
+          { title: "As-Is Pressure", text: "A used equipment seller tells a small business buyer to sign an as-is contract immediately, while withholding known information about expensive repairs.", hint: "Look for superior knowledge being used against a less-informed party." }
+        ]
+      },
+      {
+        category: categories[6],
+        feedback: "This is a personal-conduct problem. The ethical issue involves private or off-duty behavior that harms professional judgment, performance, or organizational reputation.",
+        scenarios: [
+          { title: "Off-Duty Conduct", text: "A senior executive repeatedly posts intoxicated, abusive videos online while wearing company-branded clothing, creating public backlash that damages the employer's reputation.", hint: "Notice where the conduct occurs and why it still matters professionally." },
+          { title: "Conference Meltdown", text: "A sales director becomes visibly drunk at an industry conference, insults clients, and misses the next morning's contract meeting.", hint: "Ask how personal behavior affects the person's professional role and company relationships." },
+          { title: "Public Gambling Debt", text: "A finance manager responsible for company funds is publicly sued over large gambling debts and begins asking vendors for personal loans.", hint: "Look for personal conduct that may compromise professional reliability or judgment." },
+          { title: "Brand Account Rant", text: "An employee with access to the company social account posts an angry personal rant from that account late at night.", hint: "Think about how personal behavior becomes connected to the employer." },
+          { title: "Repeated No-Shows", text: "A supervisor's weekend drug use regularly leads to missed Monday safety briefings for a warehouse team.", hint: "Focus on the link between personal conduct and workplace responsibility." }
+        ]
+      },
+      {
+        category: categories[7],
+        feedback: "This is a mistreatment problem. The ethical issue is hostile, demeaning, harassing, or abusive conduct toward another person.",
+        scenarios: [
+          { title: "Public Humiliation Meeting", text: "A manager holds weekly meetings where employees who miss sales goals are mocked by name, insulted, and told they are failures in front of the full team.", hint: "Focus on how the manager treats employees as people." },
+          { title: "Repeated Date Requests", text: "A supervisor keeps asking an employee for dinner dates after the employee has clearly said no.", hint: "Look at the repeated pressure and the power relationship." },
+          { title: "Customer-Facing Berating", text: "A store owner screams at an employee in front of customers over a minor inventory mistake.", hint: "The business error matters less than the degrading treatment." },
+          { title: "Dangerous Dare", text: "A teen employee dares a coworker to swallow a cleaning pod during a break and records the pressure on video.", hint: "Ask whether the conduct demeans, pressures, or endangers another person." },
+          { title: "Team Chat Insults", text: "A project lead creates a team chat thread where coworkers post jokes about one employee's accent and appearance.", hint: "Focus on hostile or demeaning conduct directed at a person." }
+        ]
+      },
+      {
+        category: categories[8],
+        feedback: "This is an organizational-treatment problem. The ethical issue is harmful or exploitative conditions the organization allows or benefits from.",
+        scenarios: [
+          { title: "Unsafe Supplier", text: "A clothing brand keeps using a supplier after audits show locked exits, child labor, and wages too low for workers to meet basic needs.", hint: "Look beyond one employee's behavior. The facts point to working conditions the organization knows about." },
+          { title: "Heat Without Breaks", text: "A warehouse requires employees to meet quotas in extreme heat while discouraging water breaks because breaks reduce output.", hint: "Ask how the organization's rules affect worker safety and dignity." },
+          { title: "Underpaid Crew", text: "A contractor classifies full-time cleaners as temporary helpers to avoid paying legally required benefits and overtime.", hint: "Focus on the organization's labor practice, not just one payroll error." },
+          { title: "Migrant Youth Shift", text: "A food processor discovers underage migrant workers on overnight shifts but keeps the staffing agency because production targets are high.", hint: "Look for vulnerable workers and a company choosing to benefit from the arrangement." },
+          { title: "Retaliation Schedule", text: "A retailer gives employees who report safety concerns the worst shifts until they quit.", hint: "Ask whether the organization is using its power over work conditions abusively." }
+        ]
+      },
+      {
+        category: categories[9],
+        feedback: "This is a rule-following problem. The ethical issue involves breaking an established rule, policy, regulation, or procedure.",
+        scenarios: [
+          { title: "Privacy Rule Workaround", text: "An employee leaves customer medical files open on a desk during lunch even though workplace rules require the files to be secured whenever the employee steps away.", hint: "Find the rule in the facts and ask why it exists." },
+          { title: "Personal Errands", text: "A salaried employee spends three hours most afternoons running a resale business even though company policy limits personal tasks during work time.", hint: "Look for the established work-time rule and the repeated departure from it." },
+          { title: "Badge Sharing", text: "A technician lends a secure facility badge to a friend because the visitor check-in line is long.", hint: "Focus on the access procedure and the choice to bypass it." },
+          { title: "Expense Approval Skip", text: "A department chair splits one purchase into several smaller invoices to avoid the university's competitive-bid requirement.", hint: "Ask whether the actor is working around a rule instead of following the proper process." },
+          { title: "Unapproved Equipment", text: "A lab employee uses a personal USB drive on a restricted computer even though cybersecurity rules prohibit outside devices.", hint: "The ethical signal is the rule protecting the system and the decision to ignore it." }
+        ]
+      },
+      {
+        category: categories[10],
+        feedback: "This is a tolerance or silence problem. The ethical issue is failing to address known unethical conduct by someone else.",
+        scenarios: [
+          { title: "Silent Witness", text: "A sales representative discovers that a coworker has inflated quarterly sales numbers in a report to leadership, but says nothing because the team bonus may be higher.", hint: "The coworker's inflated numbers are one problem, but focus on the representative's choice after discovering it." },
+          { title: "Ignored Harassment", text: "A team lead sees a senior employee repeatedly harass a new hire but stays quiet because the senior employee is a top performer.", hint: "Ask what responsibility comes with witnessing the conduct." },
+          { title: "Missing Inventory", text: "An employee watches a coworker take company electronics home without authorization and decides not to report it to avoid conflict.", hint: "Look at the choice to tolerate behavior the employee knows is wrong." },
+          { title: "False Claim Approval", text: "A finance analyst notices false numbers in a grant report but approves the routing because the director already signed it.", hint: "Focus on the analyst's decision to let the problem continue." },
+          { title: "Safety Shortcut Silence", text: "A supervisor knows workers are disabling machine guards to work faster but says nothing because output has improved.", hint: "Ask whether silence is allowing unsafe or unethical action to continue." }
+        ]
+      },
+      {
+        category: categories[11],
+        feedback: "This is a competing-values problem. The ethical issue requires weighing legitimate interests, stakeholders, harms, and benefits rather than finding a simple rule violation.",
+        scenarios: [
+          { title: "Legal but Harmful Location", text: "A hotel company legally builds a luxury safari property after obtaining all permits, but the location disrupts wildlife migration and the ancestral practices of nearby communities.", hint: "Do not let legal compliance end the analysis. Identify the competing interests and possible harms." },
+          { title: "Tax Strategy Abroad", text: "A profitable company legally shifts income to overseas offices to reduce home-country taxes, saving money for shareholders while reducing public revenue where most employees live.", hint: "Look for legal conduct that still forces a tradeoff among stakeholders." },
+          { title: "Plant Closure", text: "A manufacturer can keep prices low for customers and protect shareholders by closing a town's main factory, but the closure will devastate employees and local businesses.", hint: "Identify the groups affected and the values pulling in different directions." },
+          { title: "AI Hiring Filter", text: "A company adopts an AI screening tool that speeds hiring and lowers cost but may disadvantage applicants from nontraditional backgrounds.", hint: "Ask whether efficiency, fairness, cost, and opportunity are in tension." },
+          { title: "Water Use Choice", text: "A beverage company has legal water rights in a drought-prone region, but local residents worry the plant will strain the community's water supply.", hint: "Focus on competing lawful interests and the impacts on different stakeholders." }
+        ]
+      }
+    ];
+
+    const scenarios = scenarioPools.map((pool) => {
+      const selected = pool.scenarios[Math.floor(Math.random() * pool.scenarios.length)];
+      return {
+        ...selected,
+        category: pool.category,
+        feedback: pool.feedback
+      };
+    });
+
+    const readingItems = [
+      {
+        title: categories[0],
+        description: "Includes everything from unauthorized use of office supplies to major theft or expense report fraud.",
+        examples: [
+          "A driverless car company steals another company's trade secrets and begins installing the stolen technology in its own production.",
+          "Using the copy machine at work to make personal copies.",
+          "Exaggerating travel expenses."
+        ]
+      },
+      {
+        title: categories[1],
+        description: "Encompasses lying, exaggerating achievements, or providing false information on resumes, applications, or business claims.",
+        examples: [
+          "A company falsely claims that its new product can run hundreds of complex medical tests using only a single drop of blood from a finger prick.",
+          "Not disclosing a driving infraction on your car insurance application.",
+          "False statement on a job application.",
+          "Overstating your income on a credit application."
+        ]
+      },
+      {
+        title: categories[2],
+        description: "Making statements that may be technically true but are designed to mislead the listener.",
+        examples: [
+          "Playing a tape to fake a live performance.",
+          "Offers in the mail that look like official notices, such as Social Security or IRS tax notices, but are not.",
+          "A business lets a customer wrongly believe a problem was user error when the business knows it was a defect in its software product."
+        ]
+      },
+      {
+        title: categories[3],
+        description: "Occurs when one's personal interests interfere with duties owed to another person or organization. It can create an appearance of impropriety even if the actor insists it did not affect judgment.",
+        examples: [
+          "A buyer for a chain of hardware stores accepts off-the-books payments from vendors and selects their products for the company to sell.",
+          "A county commissioner accepts free travel paid for by one of the bidders on a construction contract.",
+          "A divorce attorney represents both sides in a divorce even though the parties' interests may conflict."
+        ]
+      },
+      {
+        title: categories[4],
+        description: "Involves failing to disclose information such as safety risks, or improperly revealing proprietary data, trade secrets, or personal information.",
+        examples: [
+          "An engineer starts a new job and brings her old employer's non-public customer list to the new company.",
+          "Hiding results of medical studies that show your new drug is dangerous.",
+          "Selling your customers' personal data without their knowledge or permission."
+        ]
+      },
+      {
+        title: categories[5],
+        description: "Using fine print, superior knowledge, unclear terms, or unequal bargaining power to exploit unsophisticated customers or partners.",
+        examples: [
+          "Complex contractual terms that consumers do not understand.",
+          "Charging excessive fees or fees that are not clear.",
+          "Forcing consumers to sign oppressive contracts as-is with no opportunity to negotiate."
+        ]
+      },
+      {
+        title: categories[6],
+        description: "Personal behavior outside of work, such as substance abuse or scandalous behavior, that negatively affects professional performance or company reputation.",
+        examples: [
+          "Any behavior that invites scandal.",
+          "Taking drugs or using alcohol to excess on or off the job.",
+          "Engaging in inappropriate behavior that reflects on your employer."
+        ]
+      },
+      {
+        title: categories[7],
+        description: "Hostile or demeaning conduct toward colleagues or others, including harassment, public humiliation, verbal abuse, or other physical or mental abuse.",
+        examples: [
+          "Conduct that is demeaning or abusive toward another person, such as sexual harassment, verbal lashing, or public humiliation.",
+          "A teenager dares a friend to engage in dangerous behavior.",
+          "The employer keeps asking the employee for a date.",
+          "A manager holds Tuesday morning meetings where staff are publicly humiliated for not meeting goals.",
+          "An employer berates an employee for no reason in front of a customer."
+        ]
+      },
+      {
+        title: categories[8],
+        description: "Covers how employers or organizations treat employees, such as unfair wages, poor working conditions, child labor, or exploitative labor practices.",
+        examples: [
+          "Dangerous factories, sweatshop conditions, child labor, or exploiting workers by paying below subsistence wages.",
+          "Problems with labor conditions in overseas operations.",
+          "Migrant children being discovered in the U.S. workforce."
+        ]
+      },
+      {
+        title: categories[9],
+        description: "Breaking established regulations or policies, often by justifying the violation as a response to a bad or inconvenient rule.",
+        examples: [
+          "Spending excessive work hours on personal tasks.",
+          "Using company equipment for personal needs.",
+          "Leaving sensitive information on your desk while out for lunch when rules require it to be kept private."
+        ]
+      },
+      {
+        title: categories[10],
+        description: "Failing to report or tolerating unethical behavior in others. It can occur by failing to report unethical action in any of the other categories.",
+        examples: [
+          "An employee observes a co-worker stealing from the company and does not report it.",
+          "A sales representative sees false sales claims in company financials and says nothing.",
+          "An employee observes sexual harassment of a coworker and does not report it."
+        ]
+      },
+      {
+        title: categories[11],
+        description: "The most difficult ethical category: situations where there is no clear right or wrong answer and decision-makers must trade off between competing values or stakeholders.",
+        examples: [
+          "A hotel builds a new luxury safari property in the Serengeti, complying with all legal requirements, but the location interferes with wildlife migrations and disrupts local tribes' ancestral ways of life.",
+          "A company uses a tax loophole to avoid paying corporate income tax in its home country by locating offices abroad for tax strategy."
+        ]
+      }
+    ];
+
+    const state = {
+      current: 0,
+      answers: Array(scenarios.length).fill(null),
+      checked: Array(scenarios.length).fill(false),
+      correct: Array(scenarios.length).fill(false),
+      notes: Array(scenarios.length).fill("")
+    };
+
+    let scormApi = null;
+    let scormVersion = null;
+
+    const els = {
+      categoryList: document.getElementById("categoryList"),
+      scenarioNumber: document.getElementById("scenarioNumber"),
+      completionBadge: document.getElementById("completionBadge"),
+      scenarioTitle: document.getElementById("scenarioTitle"),
+      scenarioText: document.getElementById("scenarioText"),
+      choices: document.getElementById("choices"),
+      checkBtn: document.getElementById("checkBtn"),
+      resetBtn: document.getElementById("resetBtn"),
+      feedback: document.getElementById("feedback"),
+      reflection: document.getElementById("reflection"),
+      prevBtn: document.getElementById("prevBtn"),
+      nextBtn: document.getElementById("nextBtn"),
+      completeCount: document.getElementById("completeCount"),
+      scoreCount: document.getElementById("scoreCount"),
+      scorePercent: document.getElementById("scorePercent"),
+      submitPanel: document.getElementById("submitPanel"),
+      finalScore: document.getElementById("finalScore"),
+      downloadBtn: document.getElementById("downloadBtn"),
+      submitBtn: document.getElementById("submitBtn"),
+      submitStatus: document.getElementById("submitStatus"),
+      readingTab: document.getElementById("readingTab"),
+      exercisesTab: document.getElementById("exercisesTab"),
+      readingPanel: document.getElementById("readingPanel"),
+      exercisesPanel: document.getElementById("exercisesPanel"),
+      readingList: document.getElementById("readingList")
+    };
+
+    function findScormApi(win) {
+      let depth = 0;
+      let current = win;
+      while (current && depth < 8) {
+        if (current.API_1484_11) return { api: current.API_1484_11, version: "2004" };
+        if (current.API) return { api: current.API, version: "1.2" };
+        if (current.parent && current.parent !== current) current = current.parent;
+        else break;
+        depth += 1;
+      }
+      if (win.opener) return findScormApi(win.opener);
+      return { api: null, version: null };
+    }
+
+    function scormInitialize() {
+      const found = findScormApi(window);
+      scormApi = found.api;
+      scormVersion = found.version;
+      if (!scormApi) return;
+      if (scormVersion === "2004") {
+        scormApi.Initialize("");
+        scormApi.SetValue("cmi.completion_status", "incomplete");
+        scormApi.SetValue("cmi.success_status", "unknown");
+        scormApi.Commit("");
+      } else {
+        scormApi.LMSInitialize("");
+        scormApi.LMSSetValue("cmi.core.lesson_status", "incomplete");
+        scormApi.LMSCommit("");
+      }
+    }
+
+    function scormSubmit(score) {
+      if (!scormApi) return false;
+      if (scormVersion === "2004") {
+        scormApi.SetValue("cmi.score.min", "0");
+        scormApi.SetValue("cmi.score.max", "100");
+        scormApi.SetValue("cmi.score.raw", String(score));
+        scormApi.SetValue("cmi.score.scaled", String(score / 100));
+        scormApi.SetValue("cmi.completion_status", "completed");
+        scormApi.SetValue("cmi.success_status", score >= 70 ? "passed" : "failed");
+        scormApi.Commit("");
+        scormApi.Terminate("");
+      } else {
+        scormApi.LMSSetValue("cmi.core.score.min", "0");
+        scormApi.LMSSetValue("cmi.core.score.max", "100");
+        scormApi.LMSSetValue("cmi.core.score.raw", String(score));
+        scormApi.LMSSetValue("cmi.core.lesson_status", score >= 70 ? "passed" : "completed");
+        scormApi.LMSCommit("");
+        scormApi.LMSFinish("");
+      }
+      return true;
+    }
+
+    function scoreData() {
+      const complete = state.checked.filter(Boolean).length;
+      const correct = state.correct.filter(Boolean).length;
+      const percent = Math.round((correct / scenarios.length) * 100);
+      return { complete, correct, percent };
+    }
+
+    function renderNav() {
+      els.categoryList.innerHTML = "";
+      scenarios.forEach((scenario, index) => {
+        const btn = document.createElement("button");
+        btn.type = "button";
+        btn.className = "category-pill" + (state.checked[index] ? " complete" : "");
+        btn.textContent = `${index + 1}. ${scenario.title}`;
+        btn.setAttribute("aria-current", String(index === state.current));
+        btn.addEventListener("click", () => {
+          saveNote();
+          state.current = index;
+          render();
+        });
+        els.categoryList.appendChild(btn);
+      });
+    }
+
+    function renderChoices() {
+      els.choices.innerHTML = "";
+      categories.forEach((category, index) => {
+        const id = `choice-${index}`;
+        const label = document.createElement("label");
+        label.className = "choice";
+        label.setAttribute("for", id);
+        const input = document.createElement("input");
+        input.type = "radio";
+        input.name = "category";
+        input.id = id;
+        input.value = category;
+        input.checked = state.answers[state.current] === category;
+        input.addEventListener("change", () => {
+          state.answers[state.current] = category;
+          if (!state.checked[state.current]) {
+            els.feedback.className = "feedback";
+            els.feedback.textContent = "Ready to check. Select Check this example when you are satisfied with your classification.";
+          }
+        });
+        label.append(input, document.createTextNode(category));
+        els.choices.appendChild(label);
+      });
+    }
+
+    function renderProgress() {
+      const score = scoreData();
+      els.completeCount.textContent = String(score.complete);
+      els.scoreCount.textContent = String(score.correct);
+      els.scorePercent.textContent = `${score.percent}%`;
+      const unlocked = score.complete === scenarios.length;
+      els.submitPanel.classList.toggle("unlocked", unlocked);
+      els.finalScore.textContent = `Current Canvas score: ${score.percent}% (${score.correct} of ${scenarios.length} correct).`;
+    }
+
+    function setTab(tabName) {
+      const readingActive = tabName === "reading";
+      els.readingTab.setAttribute("aria-selected", String(readingActive));
+      els.exercisesTab.setAttribute("aria-selected", String(!readingActive));
+      els.readingPanel.hidden = !readingActive;
+      els.exercisesPanel.hidden = readingActive;
+      if (readingActive) els.readingTab.focus();
+      else els.exercisesTab.focus();
+    }
+
+    function renderReading() {
+      els.readingList.innerHTML = "";
+      readingItems.forEach((item, index) => {
+        const article = document.createElement("article");
+        article.className = "accordion-item";
+        const heading = document.createElement("h3");
+        const button = document.createElement("button");
+        const panelId = `reading-panel-${index}`;
+        button.type = "button";
+        button.className = "accordion-trigger";
+        button.setAttribute("aria-expanded", "false");
+        button.setAttribute("aria-controls", panelId);
+        const number = document.createElement("span");
+        number.className = "reading-number";
+        number.textContent = `${index + 1}. `;
+        const title = document.createElement("span");
+        title.append(number, document.createTextNode(item.title));
+        const icon = document.createElement("span");
+        icon.className = "accordion-icon";
+        icon.setAttribute("aria-hidden", "true");
+        icon.textContent = "+";
+        button.append(title, icon);
+        heading.appendChild(button);
+        const panel = document.createElement("div");
+        panel.className = "accordion-panel";
+        panel.id = panelId;
+        panel.hidden = true;
+        const description = document.createElement("p");
+        description.textContent = item.description;
+        const examplesHeading = document.createElement("h4");
+        examplesHeading.textContent = "Examples";
+        const list = document.createElement("ul");
+        list.className = "example-list";
+        item.examples.forEach((example) => {
+          const li = document.createElement("li");
+          li.textContent = example;
+          list.appendChild(li);
+        });
+        panel.append(description, examplesHeading, list);
+        button.addEventListener("click", () => {
+          const expanded = button.getAttribute("aria-expanded") === "true";
+          button.setAttribute("aria-expanded", String(!expanded));
+          panel.hidden = expanded;
+          icon.textContent = expanded ? "+" : "-";
+        });
+        article.append(heading, panel);
+        els.readingList.appendChild(article);
+      });
+    }
+
+    function render() {
+      const scenario = scenarios[state.current];
+      els.scenarioNumber.textContent = `Example ${state.current + 1} of ${scenarios.length}`;
+      els.completionBadge.textContent = state.checked[state.current] ? "Checked" : "Not checked";
+      els.scenarioTitle.textContent = scenario.title;
+      els.scenarioText.textContent = scenario.text;
+      els.reflection.value = state.notes[state.current];
+      els.prevBtn.disabled = state.current === 0;
+      els.nextBtn.disabled = state.current === scenarios.length - 1;
+      if (state.checked[state.current]) {
+        const isCorrect = state.correct[state.current];
+        els.feedback.className = `feedback ${isCorrect ? "correct" : "incorrect"}`;
+        els.feedback.textContent = isCorrect
+          ? `Correct. ${scenario.feedback}`
+          : `Not quite. ${scenario.hint}`;
+      } else {
+        els.feedback.className = "feedback";
+        els.feedback.textContent = "Choose a category, then check your answer.";
+      }
+      renderChoices();
+      renderNav();
+      renderProgress();
+      renderReading();
+    }
+
+    function saveNote() {
+      state.notes[state.current] = els.reflection.value;
+    }
+
+    els.checkBtn.addEventListener("click", () => {
+      const selected = state.answers[state.current];
+      if (!selected) {
+        els.feedback.className = "feedback incorrect";
+        els.feedback.textContent = "Select a category before checking this example.";
+        return;
+      }
+      state.checked[state.current] = true;
+      state.correct[state.current] = selected === scenarios[state.current].category;
+      render();
+    });
+
+    els.resetBtn.addEventListener("click", () => {
+      state.answers[state.current] = null;
+      state.checked[state.current] = false;
+      state.correct[state.current] = false;
+      render();
+    });
+
+    els.reflection.addEventListener("input", saveNote);
+
+    els.prevBtn.addEventListener("click", () => {
+      saveNote();
+      if (state.current > 0) state.current -= 1;
+      render();
+    });
+
+    els.nextBtn.addEventListener("click", () => {
+      saveNote();
+      if (state.current < scenarios.length - 1) state.current += 1;
+      render();
+    });
+
+    els.readingTab.addEventListener("click", () => setTab("reading"));
+    els.exercisesTab.addEventListener("click", () => setTab("exercises"));
+
+    els.readingTab.addEventListener("keydown", (event) => {
+      if (event.key === "ArrowRight") setTab("exercises");
+    });
+
+    els.exercisesTab.addEventListener("keydown", (event) => {
+      if (event.key === "ArrowLeft") setTab("reading");
+    });
+
+    els.downloadBtn.addEventListener("click", () => {
+      saveNote();
+      const score = scoreData();
+      const lines = [
+        "LES 305 1.1 Ethical Issue Spotting Take-Away Brief",
+        `Score: ${score.percent}% (${score.correct} of ${scenarios.length} correct)`,
+        "",
+        "Use these notes to review which facts signaled each ethical issue category.",
+        ""
+      ];
+      scenarios.forEach((scenario, index) => {
+        lines.push(`${index + 1}. ${scenario.title}`);
+        lines.push(`Your choice: ${state.answers[index] || "No answer selected"}`);
+        lines.push(`Result: ${state.checked[index] ? (state.correct[index] ? "Correct" : "Review") : "Not checked"}`);
+        lines.push(`Reflection note: ${state.notes[index] || "None"}`);
+        lines.push("");
+      });
+      const blob = new Blob([lines.join("\n")], { type: "text/plain" });
+      const url = URL.createObjectURL(blob);
+      const link = document.createElement("a");
+      link.href = url;
+      link.download = "les305-ethical-issue-spotting-brief.txt";
+      document.body.appendChild(link);
+      link.click();
+      link.remove();
+      URL.revokeObjectURL(url);
+    });
+
+    els.submitBtn.addEventListener("click", () => {
+      const score = scoreData();
+      if (score.complete < scenarios.length) {
+        els.submitStatus.textContent = "Complete and check every example before submitting.";
+        return;
+      }
+      const sent = scormSubmit(score.percent);
+      els.submitStatus.textContent = sent
+        ? "Your score and completion status were sent to Canvas."
+        : "Canvas submission could not be confirmed in this local preview. In Canvas, this button sends your score and completion status.";
+    });
+
+    window.addEventListener("beforeunload", () => {
+      if (scormApi && scormVersion === "1.2") scormApi.LMSCommit("");
+      if (scormApi && scormVersion === "2004") scormApi.Commit("");
+    });
+
+    scormInitialize();
+    render();
+  </script>
+</body>
+</html>
